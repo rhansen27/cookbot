@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Peanut Butter",
+    "allergies": "peanuts"
+  },
+  {
+    "name": "Cheese",
+    "allergies": "dairy"
+  },
+  {
+    "name": "Bread",
+    "allergies": "gluten"
+  },
+  {
+    "name": "Tomato",
+    "allergies": "none"
+  },
+  {
+    "name": "Eggs",
+    "allergies": "eggs"
+  },
+  {
+    "name": "Chicken",
+    "allergies": "none"
+  },
+  {
+    "name": "Beef",
+    "allergies": "none"
+  }
+]

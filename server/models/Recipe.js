@@ -5,39 +5,45 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
-  ingredients: [
-    {
-      ingredientId: {
-        type: Schema.Types.ObjectId,
-        ref: "Ingredient",
-        required: true,
-      },
-      quantity: {
+  ingredients: {
+    type: [
+      new Schema({
+        ingredientId: {
+          type: Schema.Types.ObjectId,
+          ref: "Ingredient",
+          required: true,
+        },
+        quantity: {
+          type: String,
+          required: true,
+        },
+      }),
+    ],
+    default: [],
+  },
+  instructions: {
+    type: [
+      {
         type: String,
         required: true,
       },
-    },
-  ],
-  instructions: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
+    ],
+    default: [],
+  },
   cuisineType: [String],
   dietType: [String],
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
+  // updatedAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
   imageURL: {
     type: String,
   },
@@ -45,20 +51,26 @@ const recipeSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  likes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
-  dislikes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  likes: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    default: [],
+  },
+  dislikes: {
+    type: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    default: [],
+  },
 });
 
-const Recipe = new model(recipeSchema);
+const Recipe = new model("Recipe", recipeSchema);
 
 module.exports = Recipe;
