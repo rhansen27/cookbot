@@ -1,5 +1,4 @@
-const { Schema, model, default: mongoose } = require("mongoose");
-const User = require("./User");
+const { Schema, model } = require("mongoose");
 
 const ingredientSchema = new Schema({
   name: {
@@ -11,7 +10,7 @@ const ingredientSchema = new Schema({
   userId: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: User,
+      ref: "User",
       default: null,
     },
   ],

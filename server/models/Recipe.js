@@ -1,19 +1,62 @@
 const { Schema, model } = require("mongoose");
 
 const recipeSchema = new Schema({
-  // TODO
-  // title: String, required
-  // ingredients: Array of ObjectId references to Ingredient
-  // instructions: String, required
-  // cuisineType: Array of strings
-  // dietType: Array of strings
-  // createdBy: ObjectId reference to User
-  // createdAt: Date, default: current date
-  // updatedAt: Date, default: current date
-  // imageURL: String
-  // aiGenerated: Boolean, default: true
-  // likes: Array of ObjectId references to User
-  // dislikes: Array of ObjectId references to User
+  title: {
+    type: String,
+    required: true,
+  },
+  ingredients: [
+    {
+      ingredientId: {
+        type: Schema.Types.ObjectId,
+        ref: "Ingredient",
+        required: true,
+      },
+      quantity: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  instructions: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  cuisineType: [String],
+  dietType: [String],
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+  imageURL: {
+    type: String,
+  },
+  aiGenerated: {
+    type: Boolean,
+    default: true,
+  },
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  dislikes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 const Recipe = new model(recipeSchema);
