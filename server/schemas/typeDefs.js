@@ -53,9 +53,32 @@ const typeDefs = `
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
+    
     login(email: String!, password: String!): Auth
 
-    removeUser: User    
+    removeUser: User
+
+    addIngredient(name: String!, userId: [ID], allergies: [String]!): Ingredient
+
+    addRecipe(
+      title: String!
+      ingredients: [IngredientInRecipeInput]!
+      instructions: [String]!
+      cuisineType: [String]
+      dietType: [String]
+      createdBy: ID!
+      imageURL: String
+      aiGenerated: Boolean
+    ): Recipe
+
+    removeIngredient(ingredientId: ID!): Ingredient
+
+    removeRecipe(recipeId: ID!): Recipe
+  }
+
+    input IngredientInRecipeInput {
+      ingredientId: ID!
+      quantity: String!
   }
 `;
 
