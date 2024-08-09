@@ -29,3 +29,11 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const GET_RECIPE_FROM_AI = gql`
+  query GetRecipeFromAi($ingredients: String!) {
+    getRecipeFromAi(ingredients: $ingredients) {
+        content
+    }
+  }
+`
