@@ -1,5 +1,5 @@
-const { User } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { User } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -16,6 +16,22 @@ const resolvers = {
         return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
+    },
+
+    ingredients: async () => {
+      return Ingredient.find();
+    },
+
+    ingredient: async (parent, { ingredientId }) => {
+      return Ingredient.findOne({ _id: ingredientId });
+    },
+
+    recipes: async () => {
+      return Recipe.find();
+    },
+
+    recipe: async (parent, { recipeId }) => {
+      return Recipe.findOne({ _id: recipeId });
     },
   },
 
