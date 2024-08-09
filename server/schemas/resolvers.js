@@ -99,6 +99,14 @@ const resolvers = {
     await recipe.save();
     return recipe;
   },
+
+  removeIngredient: async (parent, { ingredientId }) => {
+    return Ingredient.findOneAndDelete({ _id: ingredientId });
+  },
+
+  removeRecipe: async (parent, { recipeId }) => {
+    return Recipe.findOneAndDelete({ _id: recipeId });
+  },
 };
 
 module.exports = resolvers;
