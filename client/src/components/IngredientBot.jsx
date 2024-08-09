@@ -7,7 +7,19 @@ const { TextArea } = Input;
 const IngredientBot = () => {
     const [ingredients, setIngredients] = useState('');
 
-    const [getRecipeFromAi, {loading, error, data }] = useLazyQuery(GET_RECIPE_FROM_AI) 
+    const [recipe, setRecipe] = useState(null); 
+
+    const [getRecipeFromAi, { loading, error }] = useLazyQuery(GET_RECIPE_FROM_AI, {
+        onCompleted: (data) => {
+            const content = data.getRecipeFromAi.content;
+            const [title, description, ...steps] = content.split('\n').filter(Boolean);
+            setRecipe({
+                title,
+                description,
+                steps
+            });
+        }
+    });
 
     const handleFetchRecipes = async () => {
         if (ingredients.trim()) {
@@ -24,20 +36,27 @@ const IngredientBot = () => {
                 value={ingredients}
                 onChange={(e) => setIngredients(e.target.value)}
             />
-            <Button 
-            type="primary" onClick={handleFetchRecipes} style={{ marginTop: '10px' }}>
+            <Button
+                type="primary"
+                onClick={handleFetchRecipes}
+                style={{ marginTop: '10px',backgroundColor: '#7C5BEA', width: '200px' }}
+                disabled={loading}
+            >
                 Find Recipes
             </Button>
-            {/* {recipes && recipes.length > 0 && (
+            {error && <p>Error: {error.message}</p>}
+            {recipe && (
                 <div style={{ marginTop: '20px' }}>
-                    {recipes.map((recipe, index) => (
-                        <div key={index}>
-                            <h3>{recipe.title}</h3>
-                            <p>{recipe.description}</p>
-                        </div>
-                    ))}
+                    <h2>{recipe.title}</h2>
+                    <p>{recipe.description}</p>
+                    <ul style={{ marginBottom: '5px'}}>
+                        {recipe.steps.map((step, index) => (
+                            <li key={index}>{step}</li>
+                        ))}
+                    </ul>
+
                 </div>
-            )} */}
+            )}
         </>
     );
 };

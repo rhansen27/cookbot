@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Error from './pages/Error';
+import Bot from './pages/Bot.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,10 @@ const router = createBrowserRouter([
       }, {
         path: '/profiles/:userId',
         element: <Profile />
-      },
+      },{
+        path: '/bot',
+        element: <Bot />
+      }
     ]
   }
 ])
