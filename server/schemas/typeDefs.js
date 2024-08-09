@@ -13,6 +13,7 @@ const typeDefs = `
   }
 
   type Ingredient {
+    _id: ID!
     name: String!
     userId: [ID]
     allergies: [String]!
@@ -24,16 +25,17 @@ const typeDefs = `
   }
 
   type Recipe {
+    _id: ID!
     title: String!
     ingredients: [IngredientInRecipe]!
     instructions: [String]!
-    cuisineType: String
-    dietType: String
+    cuisineType: [String]
+    dietType: [String]
     createdBy: User
     imageURL: String
     aiGenerated: Boolean
-    likes: User!
-    dislikes: User!
+    likes: [User]!
+    dislikes: [User]!
   }
 
   type Query {
@@ -41,6 +43,12 @@ const typeDefs = `
     user(userId: ID!): User
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: User
+
+    ingredients: [Ingredient]!
+    ingredient(ingredientId: ID!): Ingredient
+
+    recipes: [Recipe]!
+    recipe(recipeId: ID!): Recipe
   }
 
   type Mutation {
