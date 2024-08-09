@@ -12,6 +12,30 @@ const typeDefs = `
     user: User
   }
 
+  type Ingredient {
+    name: String!
+    userId: [ID]
+    allergies: [String]!
+  }
+
+  type IngredientInRecipe {
+    ingredientId: ID!
+    quantity: String!
+  }
+
+  type Recipe {
+    title: String!
+    ingredients: [IngredientInRecipe]!
+    instructions: [String]!
+    cuisineType: String
+    dietType: String
+    createdBy: User
+    imageURL: String
+    aiGenerated: Boolean
+    likes: User!
+    dislikes: User!
+  }
+
   type Query {
     users: [User]!
     user(userId: ID!): User
