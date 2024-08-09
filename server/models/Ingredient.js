@@ -9,7 +9,7 @@ const ingredientSchema = new Schema({
   },
   userId: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       default: null,
     },
@@ -23,6 +23,6 @@ const ingredientSchema = new Schema({
   ],
 });
 
-const Ingredient = new model(ingredientSchema);
+const Ingredient = new model("Ingredient", ingredientSchema);
 
 module.exports = Ingredient;

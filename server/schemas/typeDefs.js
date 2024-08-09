@@ -11,18 +11,33 @@ const typeDefs = `
     token: ID!
     user: User
   }
+  type Recipe {
+    _id: ID!
+  }
+   type OpenAiResponseChoiceMessage {
+   content: String
+   }
+
+
+  type OpenAiResponseChoice {
+        message: OpenAiResponseChoiceMessage
+      }
+
+  type OpenAiResponse{
+    content: String
+  }
 
   type Query {
     users: [User]!
     user(userId: ID!): User
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: User
+    getRecipeFromAi(ingredients: String!): OpenAiResponse
   }
-
+  
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
     removeUser: User    
   }
 `;

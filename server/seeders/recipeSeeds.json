@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Peanut Butter & Jelly Sandwich",
+    "instructions": [
+      "Spread peanut butter on one slice of bread",
+      "Spread jelly on the other slice of bread",
+      "Put the two slices of bread together"
+    ],
+    "cuisineType": ["Snack"],
+    "dietType": ["Vegetarian"],
+    "imageURL": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Peanut Butter & Jelly Sandwich",
+    "instructions": [
+      "Spread peanut butter on one slice of bread",
+      "Spread jelly on the other slice of bread",
+      "Put the two slices of bread together"
+    ],
+    "cuisineType": ["Snack"],
+    "dietType": ["Vegetarian"],
+    "imageURL": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Peanut Butter & Jelly Sandwich",
+    "instructions": [
+      "Spread peanut butter on one slice of bread",
+      "Spread jelly on the other slice of bread",
+      "Put the two slices of bread together"
+    ],
+    "cuisineType": ["Snack"],
+    "dietType": ["Vegetarian"],
+    "imageURL": "https://placehold.co/600x400"
+  }
+]

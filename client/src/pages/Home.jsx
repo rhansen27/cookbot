@@ -1,5 +1,6 @@
 import LikeButton from "../components/Likebutton";
 import DislikeButton from "../components/DislikeButton";
+import IngredientBot from "../components/IngredientBot";
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
           <h1>Home</h1>
           <LikeButton />
           <DislikeButton />
+          <IngredientBot />
         </div>
       </div>
     </main>
