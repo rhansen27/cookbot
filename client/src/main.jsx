@@ -8,7 +8,9 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Error from './pages/Error';
-import Bot from './pages/Bot.jsx'
+import AddRecipe from './pages/AddRecipe.jsx';
+import FindIngredient from './pages/FindIngredients.jsx';
+import NewRecipe from './pages/NewRecipe.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,9 +33,16 @@ const router = createBrowserRouter([
       }, {
         path: '/profiles/:userId',
         element: <Profile />
-      },{
-        path: '/bot',
-        element: <Bot />
+
+      }, {
+        path: '/AddRecipe',
+        element: <AddRecipe />
+      }, {
+        path: '/FindIngredients',
+        element: <FindIngredient />
+      }, {
+        path: '/NewRecipe',
+        element: <NewRecipe />
       }
     ]
   }
