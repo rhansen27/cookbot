@@ -41,10 +41,6 @@ const Diet = () => (
           label: "Dairy-Free",
         },
         {
-          value: "Gluten Free",
-          label: "Gluten Free",
-        },
-        {
           value: "Paleo",
           label: "Paleo",
         },
