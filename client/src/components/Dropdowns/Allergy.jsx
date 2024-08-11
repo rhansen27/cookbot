@@ -8,7 +8,8 @@ const Allergy = () => (
     <Select
       defaultValue="Allergy"
       style={{
-        width: 120,
+        width: 150,
+        marginTop: 10,
       }}
       onChange={handleChange}
       options={[

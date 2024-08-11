@@ -8,7 +8,8 @@ const CuiseneType = () => (
     <Select
       defaultValue="Cuisine Type"
       style={{
-        width: 120,
+        width: 150,
+        marginTop: 10,
       }}
       onChange={handleChange}
       options={[

@@ -13,7 +13,7 @@ const Filter = () => {
             <Diet />
             <Allergy />
             <CuiseneType />
-            <Button>Find My Recipe</Button>
+            <Button style={{marginTop: 10}}>Find My Recipe</Button>
         </Flex>
     );
 };
