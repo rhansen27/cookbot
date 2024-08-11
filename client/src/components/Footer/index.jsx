@@ -14,7 +14,6 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h4>&copy; {new Date().getFullYear()} - Proj 3 Starter</h4>
       </div>
     </footer>
   );

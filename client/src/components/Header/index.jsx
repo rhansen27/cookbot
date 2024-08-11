@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import logo from '../../assets/logo.png'
 import Auth from '../../utils/auth';
 
 const Header = () => {
@@ -11,6 +11,7 @@ const Header = () => {
     <header className="bg-info text-dark  display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         <Link className="text-dark" to="/">
+          <img src={logo} alt="logo" style={{borderRadius: 30}} />
           <h1 className="m-0" style={{ fontSize: '2rem' }}>
             Cook Bot 
           </h1>
