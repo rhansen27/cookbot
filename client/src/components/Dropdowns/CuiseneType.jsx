@@ -3,10 +3,10 @@ import { Select, Space } from "antd";
 const handleChange = (value) => {
   console.log(`selected ${value}`);
 };
-const Region = () => (
+const CuiseneType = () => (
   <Space wrap>
     <Select
-      defaultValue="Region"
+      defaultValue="Cuisine Type"
       style={{
         width: 120,
       }}
@@ -37,27 +37,19 @@ const Region = () => (
           label: "Japanese",
         },
         {
-          value: "Thai",
-          label: "Thai",
-        },
-        {
-          value: "Greek",
-          label: "Greek",
-        },
-        {
           value: "American",
           label: "American",
         },
         {
-          value: "Korean",
-          label: "Korean",
+          value: "Middle Eastern",
+          label: "Middle Eastern",
         },
         {
-          value: "Vietnamese",
-          label: "Vietnamese",
+          value: "French",
+          label: "French",
         },
       ]}
     />
   </Space>
 );
-export default Region;
+export default CuiseneType;

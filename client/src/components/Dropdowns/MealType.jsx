@@ -25,16 +25,12 @@ const MealType = () => (
           label: "Dinner",
         },
         {
-          value: "Appetizer",
-          label: "Appetizer",
+          value: "Snack",
+          label: "Snack",
         },
         {
-          value: "Main Course",
-          label: "Main Course",
-        },
-        {
-          value: "Side Dish",
-          label: "Side Dish",
+          value: "Teatime",
+          label: "Teatime",
         },
       ]}
     />

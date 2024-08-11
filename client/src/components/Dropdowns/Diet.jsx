@@ -13,36 +13,28 @@ const Diet = () => (
       onChange={handleChange}
       options={[
         {
-          value: "Vegetarian",
-          label: "Vegetarian",
+          value: "high-protein",
+          label: "High-Protein",
         },
         {
-          value: "Vegan",
-          label: "Vegan",
+          value: "high-fiber",
+          label: "High-Fiber",
         },
         {
-          value: "Keto",
-          label: "Keto",
+          value: "balanced",
+          label: "Balanced",
         },
         {
-          value: "Low Carb",
-          label: "Low Carb",
+          value: "low-carb",
+          label: "Low-Carb",
         },
         {
-          value: "Low Fat",
-          label: "Low Fat",
+          value: "low-fat",
+          label: "Low-Fat",
         },
         {
-          value: "Gluten-Free",
-          label: "Gluten-Free",
-        },
-        {
-          value: "Dairy-Free",
-          label: "Dairy-Free",
-        },
-        {
-          value: "Paleo",
-          label: "Paleo",
+          value: "low-sodium",
+          label: "Low-Sodium",
         },
       ]}
     />

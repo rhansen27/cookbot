@@ -13,32 +13,32 @@ const Allergy = () => (
       onChange={handleChange}
       options={[
         {
-          value: "Dairy",
-          label: "Dairy",
+          value: "dairy-free",
+          label: "Dairy-Free",
         },
         {
-          value: "Gluten",
-          label: "Gluten",
+          value: "gluten-free",
+          label: "Gluten-Free",
         },
         {
-          value: "Peanuts",
-          label: "Peanuts",
+          value: "peanut-free",
+          label: "Peanut-Free",
         },
         {
-          value: "Tree Nuts",
-          label: "Tree Nuts",
+          value: "tree-nut-free",
+          label: "Tree-Nut-Free",
         },
         {
-          value: "Shellfish",
-          label: "Shellfish",
+          value: "shellfish-free",
+          label: "Shellfish-Free",
         },
         {
-          value: "Soy",
-          label: "Soy",
+          value: "soy-free",
+          label: "Soy-Free",
         },
         {
-          value: "Wheat",
-          label: "Wheat",
+          value: "pork-free",
+          label: "Pork-free",
         },
       ]}
     />

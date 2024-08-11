@@ -3,7 +3,7 @@ import { Button, Flex } from 'antd';
 import MealType from '../Dropdowns/MealType'
 import Allergy from '../Dropdowns/Allergy'
 import Diet from '../Dropdowns/Diet'
-import Region from '../Dropdowns/Region'
+import CuiseneType from '../Dropdowns/CuiseneType';
 
 
 const Filter = () => {
@@ -12,7 +12,7 @@ const Filter = () => {
             <MealType />
             <Diet />
             <Allergy />
-            <Region />
+            <CuiseneType />
             <Button>Find My Recipe</Button>
         </Flex>
     );
