@@ -1,20 +1,21 @@
+import React from 'react';
+import { Button, Flex } from 'antd';
+import MealType from '../Dropdowns/MealType'
+import Allergy from '../Dropdowns/Allergy'
+import Diet from '../Dropdowns/Diet'
+import CuiseneType from '../Dropdowns/CuiseneType';
+
+
 const Filter = () => {
     return (
-        <div>
-            <button className="btn btn-lg btn-light m-2">
-                Meal Type
-            </button>
-            <button className="btn btn-lg btn-light m-2">
-                Diet
-            </button>
-            <button className="btn btn-lg btn-light m-2">
-                Allergy
-            </button>
-            <button className="btn btn-lg btn-light m-2">
-                Region
-            </button>
-        </div>
+        <Flex>
+            <MealType />
+            <Diet />
+            <Allergy />
+            <CuiseneType />
+            <Button style={{marginTop: 10}}>Find My Recipe</Button>
+        </Flex>
     );
 };
   
-  export default Filter;
+export default Filter;

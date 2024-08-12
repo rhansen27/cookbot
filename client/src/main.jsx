@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       }, {
         path: '/profiles/:userId',
         element: <Profile />
+
       }, {
         path: '/AddRecipe',
         element: <AddRecipe />

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import logo from '../../assets/logo.png'
 import Auth from '../../utils/auth';
 
 const Header = () => {
@@ -8,41 +8,39 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
+    <header className="bg-info text-dark  display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Proj 3 Starter
+          <img src={logo} alt="logo" style={{borderRadius: 30}} />
+          <h1 className="m-0" style={{ fontSize: '2rem' }}>
+            Cook Bot 
           </h1>
         </Link>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          The starter code.
-        </p>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
+              <Link className="btn btn-lg btn-primary m-1" to="/me">
                 View My Profile
               </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="/AddRecipe">
+              <Link className="btn btn-lg btn-primary m-1" to="/AddRecipe">
                 Add Recipe
               </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="/FindIngredients">
+              <Link className="btn btn-lg btn-primary m-1" to="/FindIngredients">
                 Find Recipe with Ingredients
               </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="/NewRecipe">
+              <Link className="btn btn-lg btn-primary m-1" to="/NewRecipe">
                 Find New Recipe
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="btn btn-lg btn-light m-1" onClick={logout}>
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
+              <Link className="btn btn-lg btn-primary m-1" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link className="btn btn-lg btn-light m-1" to="/signup">
                 Signup
               </Link>
             </>
