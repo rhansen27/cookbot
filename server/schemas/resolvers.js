@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { User, Ingredient, Recipe } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { OpenAI } = require("openai");
@@ -91,47 +92,47 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-  },
 
-  addIngredient: async (parent, { name, userId, allergies }) => {
-    const ingredient = new Ingredient({ name, userId, allergies });
-    await ingredient.save();
-    return ingredient;
-  },
+    addIngredient: async (parent, { name, userId, allergies }) => {
+      const ingredient = new Ingredient({ name, userId, allergies });
+      await ingredient.save();
+      return ingredient;
+    },
 
-  addRecipe: async (
-    parent,
-    {
-      title,
-      ingredients,
-      instructions,
-      cuisineType,
-      dietType,
-      createdBy,
-      imageURL,
-      aiGenerated,
-    }
-  ) => {
-    const recipe = new Recipe({
-      title,
-      ingredients,
-      instructions,
-      cuisineType,
-      dietType,
-      createdBy,
-      imageURL,
-      aiGenerated,
-    });
-    await recipe.save();
-    return recipe;
-  },
+    addRecipe: async (
+      parent,
+      {
+        title,
+        ingredients,
+        instructions,
+        cuisineType,
+        dietType,
+        createdBy,
+        imageURL,
+        aiGenerated,
+      }
+    ) => {
+      const recipe = new Recipe({
+        title,
+        ingredients,
+        instructions,
+        cuisineType,
+        dietType,
+        createdBy,
+        imageURL,
+        aiGenerated,
+      });
+      await recipe.save();
+      return recipe;
+    },
 
-  removeIngredient: async (parent, { ingredientId }) => {
-    return Ingredient.findOneAndDelete({ _id: ingredientId });
-  },
+    removeIngredient: async (parent, { ingredientId }) => {
+      return Ingredient.findOneAndDelete({ _id: ingredientId });
+    },
 
-  removeRecipe: async (parent, { recipeId }) => {
-    return Recipe.findOneAndDelete({ _id: recipeId });
+    removeRecipe: async (parent, { recipeId }) => {
+      return Recipe.findOneAndDelete({ _id: recipeId });
+    },
   },
 };
 

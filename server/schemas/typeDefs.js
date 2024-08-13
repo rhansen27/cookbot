@@ -11,10 +11,8 @@ const typeDefs = `
     token: ID!
     user: User
   }
-  type Recipe {
-    _id: ID!
-  }
-   type OpenAiResponseChoiceMessage {
+
+  type OpenAiResponseChoiceMessage {
    content: String
    }
 
