@@ -1,7 +1,7 @@
 import React from "react";
 import { Select, Space } from "antd";
 
-const CuiseneType = ({ onChange }) => {
+const CuisineType = ({ onChange }) => {
   const handleChange = (value) => {
     onChange(value)
   };
@@ -56,4 +56,4 @@ const CuiseneType = ({ onChange }) => {
     </Space>
   );
 }
-export default CuiseneType;
+export default CuisineType;

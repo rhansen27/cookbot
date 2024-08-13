@@ -11,13 +11,21 @@ const typeDefs = `
     token: ID!
     user: User
   }
+  
+  type IngredientFilter {
+    text: String
+    quantity: Float
+    measure: String
+    food: String
+    weight: Float
+  }
 
-  type Recipe {
+  type RecipeFilter {
     _id: ID!
     label: String
     image: String
-    source: String
-    url: String
+    instructions: [String]
+    ingredients: [IngredientFilter]
   }
    type OpenAiResponseChoiceMessage {
    content: String
@@ -68,7 +76,7 @@ const typeDefs = `
       cuisineType: String
       mealType: String
       diet: String
-      health: String): [Recipe]
+      health: String): [RecipeFilter]
 
     ingredients: [Ingredient]!
     ingredient(ingredientId: ID!): Ingredient

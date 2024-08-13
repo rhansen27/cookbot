@@ -46,41 +46,16 @@ const resolvers = {
 
     console.log(response.choices[0].message)
     return response.choices[0].message
-    }
-
-    getRecipeFromAi: async (parent, { ingredients }) => {
-      const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.",
-          },
-          {
-            role: "user",
-            content: `Ingredients: ${ingredients}`,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 350,
-        top_p: 1,
-      });
-
-      console.log(response.choices[0].message);
-      return response.choices[0].message;
     },
 
-    ingredients: async () => {
-      return Ingredient.find();
-    },
 
-    ingredient: async (parent, { ingredientId }) => {
-      return Ingredient.findOne({ _id: ingredientId });
-    },
+    // ingredients: async () => {
+    //   return Ingredient.find();
+    // },
 
-    return response.choices[0].message
-    },
+    // ingredient: async (parent, { ingredientId }) => {
+    //   return Ingredient.findOne({ _id: ingredientId });
+    // },
 
     getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health }) => {
       const app_id = process.env.RECIPE_APP_ID_KEY
@@ -96,21 +71,36 @@ const resolvers = {
       try {
         const response = await fetch(url)
         const data = await response.json()
-        console.log(url)
-        console.log(data)
-        return data
+        
+        const recipes = data.hits.map(hit => {
+          const recipe = hit.recipe;
+          return {
+            label: recipe.label,
+            image: recipe.image,
+            instructions: recipe.instructions,
+            ingredients: recipe.ingredients.map(ingredient => ({
+              text: ingredient.text,
+              quantity: ingredient.quantity,
+              measure: ingredient.measure,
+              food: ingredient.food,
+              weight: ingredient.weight,
+            }))
+          };
+        });
+
+        return recipes;
       } catch (error) {
         throw new Error('Failed to fetch recipes')
       }
     }
 
-    recipes: async () => {
-      return Recipe.find();
-    },
+    // recipes: async () => {
+    //   return Recipe.find();
+    // },
 
-    recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId });
-    },
+    // recipe: async (parent, { recipeId }) => {
+    //   return Recipe.findOne({ _id: recipeId });
+    // },
 
   },
 

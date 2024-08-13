@@ -43,8 +43,14 @@ export const GET_FILTERED_RECIPES = gql`
     getFilteredRecipes(cuisineType: $cuisineType, mealType: $mealType, diet: $diet, health: $health) {
       label
       image
-      source
-      url
+      instructions
+      ingredients {
+        text
+        quantity
+        measure
+        food
+        weight
+      }
     }
   }
 `;
