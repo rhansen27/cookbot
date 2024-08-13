@@ -1,10 +1,12 @@
 import React from "react";
 import { Select, Space } from "antd";
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
-const MealType = () => (
-  <Space wrap>
+
+const MealType = ({ onChange }) => {
+  const handleChange = (value) => {
+    onChange(value)
+  };
+  return(
+    <Space wrap>
     <Select
       defaultValue="Meal Type"
       style={{
@@ -36,5 +38,6 @@ const MealType = () => (
       ]}
     />
   </Space>
-);
+  )
+};
 export default MealType;

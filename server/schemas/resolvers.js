@@ -1,4 +1,5 @@
-
+require('dotenv').config()
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const {OpenAI} = require('openai')
@@ -42,9 +43,31 @@ const resolvers = {
         top_p: 1
     })
 
-    console.log(response.choices[0].message)
     return response.choices[0].message
+    },
+
+    getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health }) => {
+      const app_id = process.env.RECIPE_APP_ID_KEY
+      const app_key = process.env.RECIPE_API_KEY
+
+      let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`
+
+      if (cuisineType) url += `&cuisineType=${cuisineType}`;
+      if (mealType) url += `&mealType=${mealType}`;
+      if (diet) url += `&diet=${diet}`;
+      if (health) url += `&health=${health}`;
+
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log(url)
+        console.log(data)
+        return data
+      } catch (error) {
+        throw new Error('Failed to fetch recipes')
+      }
     }
+
   },
 
   Mutation: {
