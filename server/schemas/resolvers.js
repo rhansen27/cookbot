@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+
+const { User } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
+// const {OpenAI} = require('openai')
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+// })
+
+
+=======
 require("dotenv").config();
 const { User, Ingredient, Recipe } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
@@ -5,6 +16,7 @@ const { OpenAI } = require("openai");
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+>>>>>>> e905f1e7ef38870bd1c37b17613a74cab6e3d4b0
 
 const resolvers = {
   Query: {
@@ -22,6 +34,29 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+<<<<<<< HEAD
+    // getRecipeFromAi: async (parent, {ingredients}) => {
+    //   const response = await openai.chat.completions.create({
+    //     model: 'gpt-3.5-turbo',
+    //     messages: [
+    //         {
+    //         role: 'system',
+    //         content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
+    //       },
+    //       {
+    //         role: 'user',
+    //         content: `Ingredients: ${ingredients}`
+    //       }
+    //     ],
+    //     temperature: 0.7,
+    //     max_tokens: 350,
+    //     top_p: 1
+    // })
+
+    // console.log(response.choices[0].message)
+    // return response.choices[0].message
+    // }
+=======
     getRecipeFromAi: async (parent, { ingredients }) => {
       const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -60,6 +95,7 @@ const resolvers = {
     recipe: async (parent, { recipeId }) => {
       return Recipe.findOne({ _id: recipeId });
     },
+>>>>>>> e905f1e7ef38870bd1c37b17613a74cab6e3d4b0
   },
 
   Mutation: {
