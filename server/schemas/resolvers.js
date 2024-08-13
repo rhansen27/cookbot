@@ -1,12 +1,10 @@
-
-const { User } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
-const {OpenAI} = require('openai')
+require("dotenv").config();
+const { User, Ingredient, Recipe } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
+const { OpenAI } = require("openai");
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-})
-
-
+});
 
 const resolvers = {
   Query: {
@@ -24,27 +22,44 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    getRecipeFromAi: async (parent, {ingredients}) => {
+    getRecipeFromAi: async (parent, { ingredients }) => {
       const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: "gpt-3.5-turbo",
         messages: [
-            {
-            role: 'system',
-            content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
+          {
+            role: "system",
+            content:
+              "You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.",
           },
           {
-            role: 'user',
-            content: `Ingredients: ${ingredients}`
-          }
+            role: "user",
+            content: `Ingredients: ${ingredients}`,
+          },
         ],
         temperature: 0.7,
         max_tokens: 350,
-        top_p: 1
-    })
+        top_p: 1,
+      });
 
-    console.log(response.choices[0].message)
-    return response.choices[0].message
-    }
+      console.log(response.choices[0].message);
+      return response.choices[0].message;
+    },
+
+    ingredients: async () => {
+      return Ingredient.find();
+    },
+
+    ingredient: async (parent, { ingredientId }) => {
+      return Ingredient.findOne({ _id: ingredientId });
+    },
+
+    recipes: async () => {
+      return Recipe.find();
+    },
+
+    recipe: async (parent, { recipeId }) => {
+      return Recipe.findOne({ _id: recipeId });
+    },
   },
 
   Mutation: {
@@ -76,6 +91,47 @@ const resolvers = {
         return User.findOneAndDelete({ _id: context.user._id });
       }
       throw AuthenticationError;
+    },
+
+    addIngredient: async (parent, { name, userId, allergies }) => {
+      const ingredient = new Ingredient({ name, userId, allergies });
+      await ingredient.save();
+      return ingredient;
+    },
+
+    addRecipe: async (
+      parent,
+      {
+        title,
+        ingredients,
+        instructions,
+        cuisineType,
+        dietType,
+        createdBy,
+        imageURL,
+        aiGenerated,
+      }
+    ) => {
+      const recipe = new Recipe({
+        title,
+        ingredients,
+        instructions,
+        cuisineType,
+        dietType,
+        createdBy,
+        imageURL,
+        aiGenerated,
+      });
+      await recipe.save();
+      return recipe;
+    },
+
+    removeIngredient: async (parent, { ingredientId }) => {
+      return Ingredient.findOneAndDelete({ _id: ingredientId });
+    },
+
+    removeRecipe: async (parent, { recipeId }) => {
+      return Recipe.findOneAndDelete({ _id: recipeId });
     },
   },
 };
