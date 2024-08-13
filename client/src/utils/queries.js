@@ -37,3 +37,14 @@ export const GET_RECIPE_FROM_AI = gql`
     }
   }
 `
+
+export const GET_FILTERED_RECIPES = gql`
+  query GetFilteredRecipes($cuisineType: String, $mealType: String, $diet: String, $health: String) {
+    getFilteredRecipes(cuisineType: $cuisineType, mealType: $mealType, diet: $diet, health: $health) {
+      label
+      image
+      source
+      url
+    }
+  }
+`;

@@ -19,6 +19,7 @@
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^8.0.0",
+    "node-fetch": "^3.3.2",
     "openai": "^4.55.3"
   },
   "devDependencies": {

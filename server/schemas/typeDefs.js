@@ -12,7 +12,14 @@ const typeDefs = `
     user: User
   }
 
-  type OpenAiResponseChoiceMessage {
+  type Recipe {
+    _id: ID!
+    label: String
+    image: String
+    source: String
+    url: String
+  }
+   type OpenAiResponseChoiceMessage {
    content: String
    }
 
@@ -57,6 +64,11 @@ const typeDefs = `
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: User
     getRecipeFromAi(ingredients: String!): OpenAiResponse
+    getFilteredRecipes(
+      cuisineType: String
+      mealType: String
+      diet: String
+      health: String): [Recipe]
 
     ingredients: [Ingredient]!
     ingredient(ingredientId: ID!): Ingredient

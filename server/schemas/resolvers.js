@@ -1,22 +1,13 @@
-<<<<<<< HEAD
 
-const { User } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
-// const {OpenAI} = require('openai')
-// const openai = new OpenAI({
-//   apiKey: process.env.OPENAI_API_KEY,
-// })
-
-
-=======
-require("dotenv").config();
+require('dotenv').config()
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { User, Ingredient, Recipe } = require("../models");
-const { signToken, AuthenticationError } = require("../utils/auth");
-const { OpenAI } = require("openai");
+const { signToken, AuthenticationError } = require('../utils/auth');
+const {OpenAI} = require('openai')
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-});
->>>>>>> e905f1e7ef38870bd1c37b17613a74cab6e3d4b0
+})
+
 
 const resolvers = {
   Query: {
@@ -34,29 +25,29 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-<<<<<<< HEAD
-    // getRecipeFromAi: async (parent, {ingredients}) => {
-    //   const response = await openai.chat.completions.create({
-    //     model: 'gpt-3.5-turbo',
-    //     messages: [
-    //         {
-    //         role: 'system',
-    //         content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
-    //       },
-    //       {
-    //         role: 'user',
-    //         content: `Ingredients: ${ingredients}`
-    //       }
-    //     ],
-    //     temperature: 0.7,
-    //     max_tokens: 350,
-    //     top_p: 1
-    // })
 
-    // console.log(response.choices[0].message)
-    // return response.choices[0].message
-    // }
-=======
+    getRecipeFromAi: async (parent, {ingredients}) => {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [
+            {
+            role: 'system',
+            content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
+          },
+          {
+            role: 'user',
+            content: `Ingredients: ${ingredients}`
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 350,
+        top_p: 1
+    })
+
+    console.log(response.choices[0].message)
+    return response.choices[0].message
+    }
+
     getRecipeFromAi: async (parent, { ingredients }) => {
       const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -88,6 +79,31 @@ const resolvers = {
       return Ingredient.findOne({ _id: ingredientId });
     },
 
+    return response.choices[0].message
+    },
+
+    getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health }) => {
+      const app_id = process.env.RECIPE_APP_ID_KEY
+      const app_key = process.env.RECIPE_API_KEY
+
+      let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`
+
+      if (cuisineType) url += `&cuisineType=${cuisineType}`;
+      if (mealType) url += `&mealType=${mealType}`;
+      if (diet) url += `&diet=${diet}`;
+      if (health) url += `&health=${health}`;
+
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        console.log(url)
+        console.log(data)
+        return data
+      } catch (error) {
+        throw new Error('Failed to fetch recipes')
+      }
+    }
+
     recipes: async () => {
       return Recipe.find();
     },
@@ -95,7 +111,7 @@ const resolvers = {
     recipe: async (parent, { recipeId }) => {
       return Recipe.findOne({ _id: recipeId });
     },
->>>>>>> e905f1e7ef38870bd1c37b17613a74cab6e3d4b0
+
   },
 
   Mutation: {
