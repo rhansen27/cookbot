@@ -48,5 +48,10 @@
     "name": "Lernantino",
     "email": "lernantino@techfriends.dev",
     "password": "password10"
+  },
+  {
+    "name": "Veysel",
+    "email": "veysel@veysel.com",
+    "password": "1234567890"
   }
 ]
