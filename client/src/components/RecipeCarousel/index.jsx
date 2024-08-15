@@ -1,6 +1,16 @@
+import { useQuery } from "@apollo/client";
 import { Carousel } from "antd";
 import RecipeCard from "../RecipeCard";
-import { getRecipes } from "../../utils/getRecipes";
+import { GET_RECIPES } from "../../utils/queries";
+
+export const getRecipes = () => {
+  const { loading, error, data } = useQuery(GET_RECIPES);
+  return {
+    loading,
+    error,
+    recipes: data ? data.recipes : [],
+  };
+};
 
 const carouselSettings = {
   dots: true,
@@ -54,6 +64,7 @@ const RecipeCarousel = () => {
           title={recipe.title}
           imageURL={recipe.imageURL}
           cuisineType={recipe.cuisineType}
+          createdBy={recipe.createdBy.name}
         />
       ))}
     </Carousel>

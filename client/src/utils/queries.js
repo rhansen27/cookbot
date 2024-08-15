@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USERS = gql`
   query allUsers {
@@ -33,14 +33,26 @@ export const QUERY_ME = gql`
 export const GET_RECIPE_FROM_AI = gql`
   query GetRecipeFromAi($ingredients: String!) {
     getRecipeFromAi(ingredients: $ingredients) {
-        content
+      content
     }
   }
-`
+`;
 
 export const GET_FILTERED_RECIPES = gql`
-  query GetFilteredRecipes($cuisineType: String, $mealType: String, $diet: String, $health: String, $query: String) {
-    getFilteredRecipes(cuisineType: $cuisineType, mealType: $mealType, diet: $diet, health: $health, query: $query) {
+  query GetFilteredRecipes(
+    $cuisineType: String
+    $mealType: String
+    $diet: String
+    $health: String
+    $query: String
+  ) {
+    getFilteredRecipes(
+      cuisineType: $cuisineType
+      mealType: $mealType
+      diet: $diet
+      health: $health
+      query: $query
+    ) {
       label
       image
       url
@@ -50,6 +62,20 @@ export const GET_FILTERED_RECIPES = gql`
         measure
         food
         weight
+      }
+    }
+  }
+`;
+
+export const GET_RECIPES = gql`
+  query GetRecipes {
+    recipes {
+      _id
+      title
+      imageURL
+      cuisineType
+      createdBy {
+        name
       }
     }
   }

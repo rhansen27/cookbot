@@ -21,7 +21,7 @@ db.once("open", async () => {
 
       const selectedIngredients = ingredients
         .sort(() => 0.5 - Math.random())
-        .slice(0, 3) // Assuming each recipe uses 3 random ingredients
+        .slice(0, 3)
         .map((ingredient) => ({
           ingredientId: ingredient._id,
           quantity: `${Math.floor(Math.random() * 5) + 1} tbsp`,

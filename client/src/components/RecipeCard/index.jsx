@@ -5,7 +5,7 @@ import DislikeButton from "../DislikeButton";
 
 const { Meta } = Card;
 
-const RecipeCard = ({ title, imageURL, cuisineType }) => (
+const RecipeCard = ({ title, imageURL, createdBy }) => (
   <div style={{ padding: "10px" }}>
     <Card
       hoverable
@@ -16,7 +16,7 @@ const RecipeCard = ({ title, imageURL, cuisineType }) => (
         margin: "0px 10px",
       }}
     >
-      <Meta title={title} description={cuisineType.join(", ")} />
+      <Meta title={title} description={`Created by: ${createdBy}`} />
       <div
         style={{
           display: "flex",
