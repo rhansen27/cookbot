@@ -1,27 +1,6 @@
-import { useQuery } from "@apollo/client";
 import { Carousel } from "antd";
 import RecipeCard from "../RecipeCard";
-import { gql } from "@apollo/client";
-
-const GET_RECIPES = gql`
-  query GetRecipes {
-    recipes {
-      _id
-      title
-      imageURL
-      cuisineType
-    }
-  }
-`;
-
-const useRecipes = () => {
-  const { loading, error, data } = useQuery(GET_RECIPES);
-  return {
-    loading,
-    error,
-    recipes: data ? data.recipes : [],
-  };
-};
+import { getRecipes } from "../../utils/getRecipes";
 
 const carouselSettings = {
   dots: true,
@@ -62,7 +41,7 @@ const carouselSettings = {
 };
 
 const RecipeCarousel = () => {
-  const { loading, error, recipes } = useRecipes();
+  const { loading, error, recipes } = getRecipes();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
