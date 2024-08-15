@@ -8,28 +8,129 @@
     ],
     "cuisineType": ["Snack"],
     "dietType": ["Vegetarian"],
-    "imageURL": "https://placehold.co/600x400"
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
   },
   {
-    "title": "Peanut Butter & Jelly Sandwich",
+    "title": "Grilled Cheese Sandwich",
     "instructions": [
-      "Spread peanut butter on one slice of bread",
-      "Spread jelly on the other slice of bread",
-      "Put the two slices of bread together"
+      "Butter one side of each slice of bread",
+      "Place cheese between the slices of bread",
+      "Grill in a pan until bread is golden brown and cheese is melted"
     ],
     "cuisineType": ["Snack"],
     "dietType": ["Vegetarian"],
-    "imageURL": "https://placehold.co/600x400"
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
   },
   {
-    "title": "Peanut Butter & Jelly Sandwich",
+    "title": "Tomato Soup",
     "instructions": [
-      "Spread peanut butter on one slice of bread",
-      "Spread jelly on the other slice of bread",
-      "Put the two slices of bread together"
+      "Heat a pot over medium heat",
+      "Add tomatoes and cook until softened",
+      "Blend the tomatoes until smooth",
+      "Simmer and season to taste"
+    ],
+    "cuisineType": ["Soup"],
+    "dietType": ["Vegan"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Chicken Salad",
+    "instructions": [
+      "Chop cooked chicken into bite-sized pieces",
+      "Mix with mayonnaise, celery, and seasonings",
+      "Serve on a bed of lettuce or between slices of bread"
+    ],
+    "cuisineType": ["Salad"],
+    "dietType": ["Non-Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Beef Tacos",
+    "instructions": [
+      "Cook ground beef in a skillet until browned",
+      "Fill taco shells with beef, lettuce, tomato, and cheese",
+      "Serve with salsa and sour cream"
+    ],
+    "cuisineType": ["Mexican"],
+    "dietType": ["Non-Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Egg Salad Sandwich",
+    "instructions": [
+      "Boil eggs until hard",
+      "Chop eggs and mix with mayonnaise and mustard",
+      "Spread the mixture on slices of bread"
     ],
     "cuisineType": ["Snack"],
     "dietType": ["Vegetarian"],
-    "imageURL": "https://placehold.co/600x400"
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Cheese Omelette",
+    "instructions": [
+      "Whisk eggs in a bowl",
+      "Pour into a hot pan and cook until set",
+      "Add cheese to one half and fold the omelette",
+      "Serve hot"
+    ],
+    "cuisineType": ["Breakfast"],
+    "dietType": ["Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Tomato and Mozzarella Salad",
+    "instructions": [
+      "Slice tomatoes and mozzarella cheese",
+      "Arrange on a plate and drizzle with olive oil and balsamic vinegar",
+      "Sprinkle with fresh basil and serve"
+    ],
+    "cuisineType": ["Salad"],
+    "dietType": ["Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Chicken Alfredo",
+    "instructions": [
+      "Cook pasta according to package instructions",
+      "In a pan, cook chicken breast until golden",
+      "Add cream and Parmesan cheese, stirring until smooth",
+      "Toss the pasta in the sauce and serve"
+    ],
+    "cuisineType": ["Italian"],
+    "dietType": ["Non-Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Peanut Butter Smoothie",
+    "instructions": [
+      "Blend peanut butter, banana, and milk until smooth",
+      "Pour into a glass and serve chilled"
+    ],
+    "cuisineType": ["Beverage"],
+    "dietType": ["Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Grilled Chicken Sandwich",
+    "instructions": [
+      "Grill chicken breast until fully cooked",
+      "Place the chicken on a bun with lettuce, tomato, and mayonnaise",
+      "Serve warm"
+    ],
+    "cuisineType": ["Lunch"],
+    "dietType": ["Non-Vegetarian"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "title": "Vegetable Stir-Fry",
+    "instructions": [
+      "Chop a variety of vegetables (carrots, broccoli, bell peppers)",
+      "Stir-fry in a hot pan with soy sauce and garlic",
+      "Serve over rice or noodles"
+    ],
+    "cuisineType": ["Asian"],
+    "dietType": ["Vegan"],
+    "imageURL": "https://plus.unsplash.com/premium_photo-1670601440146-3b33dfcd7e17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvb2R8ZW58MHx8MHx8fDA%3D"
   }
 ]
