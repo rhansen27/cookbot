@@ -10,7 +10,7 @@ const Health = ({ onChange }) => {
       <Select
         defaultValue="Health"
         style={{
-          width: 150,
+          width: 130,
           marginTop: 10,
         }}
         onChange={handleChange}

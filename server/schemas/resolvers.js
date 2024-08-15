@@ -57,12 +57,13 @@ const resolvers = {
     //   return Ingredient.findOne({ _id: ingredientId });
     // },
 
-    getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health }) => {
+    getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health, query }) => {
       const app_id = process.env.RECIPE_APP_ID_KEY
       const app_key = process.env.RECIPE_API_KEY
 
       let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`
 
+      if (query) url += `&q=${query}`
       if (cuisineType) url += `&cuisineType=${cuisineType}`;
       if (mealType) url += `&mealType=${mealType}`;
       if (diet) url += `&diet=${diet}`;
@@ -71,13 +72,13 @@ const resolvers = {
       try {
         const response = await fetch(url)
         const data = await response.json()
-        
         const recipes = data.hits.map(hit => {
           const recipe = hit.recipe;
+          console.log(recipe)
           return {
             label: recipe.label,
             image: recipe.image,
-            instructions: recipe.instructions,
+            url: recipe.url,
             ingredients: recipe.ingredients.map(ingredient => ({
               text: ingredient.text,
               quantity: ingredient.quantity,

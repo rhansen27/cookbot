@@ -39,11 +39,11 @@ export const GET_RECIPE_FROM_AI = gql`
 `
 
 export const GET_FILTERED_RECIPES = gql`
-  query GetFilteredRecipes($cuisineType: String, $mealType: String, $diet: String, $health: String) {
-    getFilteredRecipes(cuisineType: $cuisineType, mealType: $mealType, diet: $diet, health: $health) {
+  query GetFilteredRecipes($cuisineType: String, $mealType: String, $diet: String, $health: String, $query: String) {
+    getFilteredRecipes(cuisineType: $cuisineType, mealType: $mealType, diet: $diet, health: $health, query: $query) {
       label
       image
-      instructions
+      url
       ingredients {
         text
         quantity

@@ -24,7 +24,7 @@ const typeDefs = `
     _id: ID!
     label: String
     image: String
-    instructions: [String]
+    url: String
     ingredients: [IngredientFilter]
   }
    type OpenAiResponseChoiceMessage {
@@ -76,7 +76,8 @@ const typeDefs = `
       cuisineType: String
       mealType: String
       diet: String
-      health: String): [RecipeFilter]
+      health: String
+      query: String): [RecipeFilter]
 
     ingredients: [Ingredient]!
     ingredient(ingredientId: ID!): Ingredient
