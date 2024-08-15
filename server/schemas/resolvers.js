@@ -103,11 +103,11 @@ const resolvers = {
 
     // Recipe Queries
     recipes: async () => {
-      return Recipe.find();
+      return Recipe.find().populate("createdBy", "name");
     },
 
     recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId });
+      return Recipe.findOne({ _id: recipeId }).populate("createdBy", "name");
     },
   },
 
