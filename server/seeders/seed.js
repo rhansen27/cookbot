@@ -10,27 +10,33 @@ db.once("open", async () => {
     await cleanDB("User", "users");
     await cleanDB("Ingredient", "ingredients");
     await cleanDB("Recipe", "recipes");
+
     const users = await User.create(userSeeds);
     const ingredients = await Ingredient.create(ingredientSeeds);
     const recipes = await Recipe.create(recipeSeeds);
+
     for (const recipe of recipes) {
-      const randIngredientIndex = Math.floor(
-        Math.random() * ingredients.length
-      );
-      const randIngredient = ingredients[randIngredientIndex];
       const randUserIndex = Math.floor(Math.random() * users.length);
       const randUser = users[randUserIndex];
+
+      const selectedIngredients = ingredients
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3) // Assuming each recipe uses 3 random ingredients
+        .map((ingredient) => ({
+          ingredientId: ingredient._id,
+          quantity: `${Math.floor(Math.random() * 5) + 1} tbsp`,
+        }));
+
       await Recipe.findByIdAndUpdate(recipe._id, {
         createdBy: randUser._id,
-        $push: {
-          ingredients: { ingredientId: randIngredient._id, quantity: "1tbsp" },
-        },
+        ingredients: selectedIngredients,
       });
     }
 
-    await console.log("all done!");
+    console.log("All done!");
     process.exit(0);
   } catch (err) {
-    throw err;
+    console.error(err);
+    process.exit(1);
   }
 });
