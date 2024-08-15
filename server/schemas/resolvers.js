@@ -10,6 +10,7 @@ const openai = new OpenAI({
 
 const resolvers = {
   Query: {
+    // User Queries
     users: async () => {
       return User.find();
     },
@@ -17,7 +18,7 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
-    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
+
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
@@ -25,28 +26,7 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    // getRecipeFromAi: async (parent, {ingredients}) => {
-    //   const response = await openai.chat.completions.create({
-    //     model: 'gpt-3.5-turbo',
-    //     messages: [
-    //         {
-    //         role: 'system',
-    //         content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
-    //       },
-    //       {
-    //         role: 'user',
-    //         content: `Ingredients: ${ingredients}`
-    //       }
-    //     ],
-    //     temperature: 0.7,
-    //     max_tokens: 350,
-    //     top_p: 1
-    // })
-
-    // console.log(response.choices[0].message)
-    // return response.choices[0].message
-    // }
-
+    // AI-powered recipe generation
     getRecipeFromAi: async (parent, { ingredients }) => {
       const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -54,7 +34,7 @@ const resolvers = {
           {
             role: "system",
             content:
-              "You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.",
+              "You are a recipe expert. You will receive ingredients and based on that information, you will find a recipe. In the response, I want to see the title, description, and steps to make that recipe.",
           },
           {
             role: "user",
@@ -70,6 +50,7 @@ const resolvers = {
       return response.choices[0].message;
     },
 
+    // Ingredient Queries (Commented Out in Original)
     ingredients: async () => {
       return Ingredient.find();
     },
@@ -78,18 +59,17 @@ const resolvers = {
       return Ingredient.findOne({ _id: ingredientId });
     },
 
-    // return response.choices[0].message
-    // },
-
+    // Fetch recipes from external API with filtering options
     getFilteredRecipes: async (
       parent,
-      { cuisineType, mealType, diet, health }
+      { cuisineType, mealType, diet, health, query }
     ) => {
       const app_id = process.env.RECIPE_APP_ID_KEY;
       const app_key = process.env.RECIPE_API_KEY;
 
       let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`;
 
+      if (query) url += `&q=${query}`;
       if (cuisineType) url += `&cuisineType=${cuisineType}`;
       if (mealType) url += `&mealType=${mealType}`;
       if (diet) url += `&diet=${diet}`;
@@ -98,14 +78,30 @@ const resolvers = {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log(url);
-        console.log(data);
-        return data;
+        const recipes = data.hits.map((hit) => {
+          const recipe = hit.recipe;
+          console.log(recipe);
+          return {
+            label: recipe.label,
+            image: recipe.image,
+            url: recipe.url,
+            ingredients: recipe.ingredients.map((ingredient) => ({
+              text: ingredient.text,
+              quantity: ingredient.quantity,
+              measure: ingredient.measure,
+              food: ingredient.food,
+              weight: ingredient.weight,
+            })),
+          };
+        });
+
+        return recipes;
       } catch (error) {
         throw new Error("Failed to fetch recipes");
       }
     },
 
+    // Recipe Queries
     recipes: async () => {
       return Recipe.find();
     },
@@ -116,12 +112,14 @@ const resolvers = {
   },
 
   Mutation: {
+    // User Mutations
     addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
       const token = signToken(user);
 
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -138,7 +136,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    // Set up mutation so a logged in user can only remove their user and no one else's
+
     removeUser: async (parent, args, context) => {
       if (context.user) {
         return User.findOneAndDelete({ _id: context.user._id });
@@ -146,12 +144,18 @@ const resolvers = {
       throw AuthenticationError;
     },
 
+    // Ingredient Mutations
     addIngredient: async (parent, { name, userId, allergies }) => {
       const ingredient = new Ingredient({ name, userId, allergies });
       await ingredient.save();
       return ingredient;
     },
 
+    removeIngredient: async (parent, { ingredientId }) => {
+      return Ingredient.findOneAndDelete({ _id: ingredientId });
+    },
+
+    // Recipe Mutations
     addRecipe: async (
       parent,
       {
@@ -177,10 +181,6 @@ const resolvers = {
       });
       await recipe.save();
       return recipe;
-    },
-
-    removeIngredient: async (parent, { ingredientId }) => {
-      return Ingredient.findOneAndDelete({ _id: ingredientId });
     },
 
     removeRecipe: async (parent, { recipeId }) => {
