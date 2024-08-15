@@ -1,30 +1,34 @@
 [
   {
     "name": "Peanut Butter",
-    "allergies": "peanuts"
+    "allergies": ["peanuts"]
   },
   {
     "name": "Cheese",
-    "allergies": "dairy"
+    "allergies": ["dairy"]
   },
   {
     "name": "Bread",
-    "allergies": "gluten"
+    "allergies": ["gluten"]
   },
   {
     "name": "Tomato",
-    "allergies": "none"
+    "allergies": ["none"]
   },
   {
     "name": "Eggs",
-    "allergies": "eggs"
+    "allergies": ["eggs"]
   },
   {
     "name": "Chicken",
-    "allergies": "none"
+    "allergies": ["none"]
   },
   {
     "name": "Beef",
-    "allergies": "none"
+    "allergies": ["none"]
+  },
+  {
+    "name": "Soy Sauce",
+    "allergies": ["wheat", "gluten"]
   }
 ]
