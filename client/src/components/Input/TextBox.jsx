@@ -1,10 +1,25 @@
 import React from "react";
-import { Input } from "antd";
+import { Input, Button } from "antd";
 
 const { TextArea } = Input;
 
-const TextBox = () => {
-  return <TextArea rows={4} />;
-};
+export default function TextBox() {
+  function handleSubmit(e) {
+    e.preventDefault();
 
-export default TextBox;
+    const form = e.target;
+    console.log(form);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>User Information</label>
+      <TextArea
+        name="userInfo"
+        defaultValue="Enter your information here"
+        rows={4}
+      />
+      <Button type="primary">Save</Button>
+    </form>
+  );
+}
