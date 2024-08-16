@@ -26,7 +26,7 @@ const Header = () => {
                 Add Recipe
               </Link>
               <Link className="btn btn-lg btn-primary m-1" to="/FindIngredients">
-                Find Recipe with Ingredients
+                AI Recipe with Ingredients
               </Link>
               <Link className="btn btn-lg btn-primary m-1" to="/NewRecipe">
                 Find New Recipe

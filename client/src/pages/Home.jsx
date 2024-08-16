@@ -2,6 +2,7 @@ import LikeButton from "../components/Likebutton";
 import DislikeButton from "../components/DislikeButton";
 import IngredientBot from "../components/IngredientBot";
 
+import RecipeCarousel from "../components/RecipeCarousel";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
           <h1>Home</h1>
         </div>
       </div>
+      <RecipeCarousel />
     </main>
   );
 };
