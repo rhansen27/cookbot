@@ -176,6 +176,131 @@ body {
   font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Regular', sans-serif;
 }
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.ingredient-form {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #CCD5AE;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.upload-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-text {
+  margin-top: 8px;
+}
+
+.ingredient-space {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.submit-button-container:hover {
+  transform: scale(1.2);
+}
+
+.ant-form-item-label {
+  text-align: left;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa;
+}
+
+input,
+textarea {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+button:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.login-signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30rem;
+  padding: 20px;
+}
+
+.login-signup-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+}
+
+.login-signup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login-signup-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-signup-form {
+  width: 100%;
+}
+
+.form-input {
+  width: 92%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #40a9ff;
+}
+
 
 /* Carousel
      ========================================================================== */

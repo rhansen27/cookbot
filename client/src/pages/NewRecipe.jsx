@@ -1,15 +1,18 @@
 import Filter from "../components/Filter";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const NewRecipe = () => {
   return (
-    <main className="new-recipe-container">
-      <div className="content-wrapper">
-        <div className="content-box">
-          <h1 className="page-title">Find New Recipe</h1>
-          <Filter />
+    <ProtectedRoute>
+      <main className="new-recipe-container">
+        <div className="content-wrapper">
+          <div className="content-box">
+            <h1 className="page-title">Find New Recipe</h1>
+            <Filter />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </ProtectedRoute>
   );
 };
 
