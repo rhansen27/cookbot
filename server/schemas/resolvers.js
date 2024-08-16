@@ -46,8 +46,9 @@ const resolvers = {
         top_p: 1,
       });
 
-      console.log(response.choices[0].message);
-      return response.choices[0].message;
+    // ingredient: async (parent, { ingredientId }) => {
+    //   return Ingredient.findOne({ _id: ingredientId });
+    // },
     },
 
     // Ingredient Queries (Commented Out in Original)
@@ -55,9 +56,7 @@ const resolvers = {
       return Ingredient.find();
     },
 
-    ingredient: async (parent, { ingredientId }) => {
-      return Ingredient.findOne({ _id: ingredientId });
-    },
+    //   let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`
 
     // Fetch recipes from external API with filtering options
     getFilteredRecipes: async (
