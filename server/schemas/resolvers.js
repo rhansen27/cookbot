@@ -3,10 +3,10 @@ require('dotenv').config()
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { User, Ingredient, Recipe } = require("../models");
 const { signToken, AuthenticationError } = require('../utils/auth');
-const {OpenAI} = require('openai')
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// const {OpenAI} = require('openai')
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+// })
 
 
 const resolvers = {
@@ -26,93 +26,68 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    getRecipeFromAi: async (parent, {ingredients}) => {
-      const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-            {
-            role: 'system',
-            content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
-          },
-          {
-            role: 'user',
-            content: `Ingredients: ${ingredients}`
-          }
-        ],
-        temperature: 0.7,
-        max_tokens: 350,
-        top_p: 1
-    })
+    // getRecipeFromAi: async (parent, {ingredients}) => {
+    //   const response = await openai.chat.completions.create({
+    //     model: 'gpt-3.5-turbo',
+    //     messages: [
+    //         {
+    //         role: 'system',
+    //         content: 'You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.'
+    //       },
+    //       {
+    //         role: 'user',
+    //         content: `Ingredients: ${ingredients}`
+    //       }
+    //     ],
+    //     temperature: 0.7,
+    //     max_tokens: 350,
+    //     top_p: 1
+    // })
 
-    console.log(response.choices[0].message)
-    return response.choices[0].message
-    }
+    // console.log(response.choices[0].message)
+    // return response.choices[0].message
+    // }
 
-    getRecipeFromAi: async (parent, { ingredients }) => {
-      const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a recipe expert.You will recieve ingredients and based on those information.You will find a recipe.In the response i want to see the title, description and steps to make that recipe.",
-          },
-          {
-            role: "user",
-            content: `Ingredients: ${ingredients}`,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 350,
-        top_p: 1,
-      });
+    // ingredients: async () => {
+    //   return Ingredient.find();
+    // },
 
-      console.log(response.choices[0].message);
-      return response.choices[0].message;
+    // ingredient: async (parent, { ingredientId }) => {
+    //   return Ingredient.findOne({ _id: ingredientId });
+    // },
     },
 
-    ingredients: async () => {
-      return Ingredient.find();
-    },
+    // getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health }) => {
+    //   const app_id = process.env.RECIPE_APP_ID_KEY
+    //   const app_key = process.env.RECIPE_API_KEY
 
-    ingredient: async (parent, { ingredientId }) => {
-      return Ingredient.findOne({ _id: ingredientId });
-    },
+    //   let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`
 
-    return response.choices[0].message
-    },
+    //   if (cuisineType) url += `&cuisineType=${cuisineType}`;
+    //   if (mealType) url += `&mealType=${mealType}`;
+    //   if (diet) url += `&diet=${diet}`;
+    //   if (health) url += `&health=${health}`;
 
-    getFilteredRecipes: async (parent, { cuisineType, mealType, diet, health }) => {
-      const app_id = process.env.RECIPE_APP_ID_KEY
-      const app_key = process.env.RECIPE_API_KEY
+    //   try {
+    //     const response = await fetch(url)
+    //     const data = await response.json()
+    //     console.log(url)
+    //     console.log(data)
+    //     return data
+    //   } catch (error) {
+    //     throw new Error('Failed to fetch recipes')
+    //   }
+    // }
 
-      let url = `https://api.edamam.com/api/recipes/v2?type=public&app_id=${app_id}&app_key=${app_key}`
+    // recipes: async () => {
+    //   return Recipe.find();
+    // },
 
-      if (cuisineType) url += `&cuisineType=${cuisineType}`;
-      if (mealType) url += `&mealType=${mealType}`;
-      if (diet) url += `&diet=${diet}`;
-      if (health) url += `&health=${health}`;
+    // recipe: async (parent, { recipeId }) => {
+    //   return Recipe.findOne({ _id: recipeId });
+    // },
 
-      try {
-        const response = await fetch(url)
-        const data = await response.json()
-        console.log(url)
-        console.log(data)
-        return data
-      } catch (error) {
-        throw new Error('Failed to fetch recipes')
-      }
-    }
-
-    recipes: async () => {
-      return Recipe.find();
-    },
-
-    recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId });
-    },
-
-  },
+  // },
 
   Mutation: {
     addUser: async (parent, { name, email, password }) => {
