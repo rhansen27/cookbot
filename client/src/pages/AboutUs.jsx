@@ -50,14 +50,3 @@ const AboutUs = () => {
 
 export default AboutUs;
 
-// Tom Burzynski
-// https://github.com/tburzynski2
-
-// Veysel Arslan
-// https://github.com/veyselarslan12
-
-// Ryan Hansen
-// https://github.com/rhansen27
-
-// Parker T. Rosemeyer
-// https://github.com/parros
