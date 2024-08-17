@@ -1,7 +1,3 @@
-import LikeButton from "../components/Likebutton";
-import DislikeButton from "../components/DislikeButton";
-import IngredientBot from "../components/IngredientBot";
-
 import RecipeCarousel from "../components/RecipeCarousel";
 
 const Home = () => {
@@ -9,7 +5,7 @@ const Home = () => {
     <main>
       <div className="new-recipe-container">
         <div className="content-box">
-          <h1 className="page-title">Home</h1>
+          <h1 className="page-title">Delicious Recipes</h1>
         </div>
       </div>
       <RecipeCarousel />

@@ -302,6 +302,63 @@ button:hover {
 }
 
 
+.about-us-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.about-us-content {
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #B5CFB7;
+}
+
+.about-us-title {
+  font-size: 45px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.about-us-text {
+  font-size: 28px;
+  line-height: 1.6;
+  color: white;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.link-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+.link-btn {
+  display: inline-block;
+  background-color: #7A1CAC;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+
+.link-btn:hover {
+  background-color: #AD49E1;
+}
+
+
 /* Carousel
      ========================================================================== */
 /*

@@ -23,10 +23,12 @@ const Header = () => {
             <Link to="/AddRecipe" className="nav-button">Add Recipe</Link>
             <Link to="/FindIngredients" className="nav-button">AI Recipe with Ingredients</Link>
             <Link to="/NewRecipe" className="nav-button">Find New Recipe</Link>
+            <Link to="/AboutUs" className="nav-button">About Us</Link>
             <button className="nav-button logout-button" onClick={logout}>Logout</button>
           </>
         ) : (
           <>
+            <Link to="/AboutUs" className="nav-button">About Us</Link>
             <Link to="/login" className="nav-button">Login</Link>
             <Link to="/signup" className="nav-button">Signup</Link>
           </>
