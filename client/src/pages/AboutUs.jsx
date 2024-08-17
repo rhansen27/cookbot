@@ -29,6 +29,7 @@ const AboutUs = () => {
         </p>
         <h2 style={{textAlign: 'center'}}>Github Links to Contributors</h2>
         <div className="link-buttons">
+          <Link to="https://github.com/rhansen27/cookbot" className="link-btn" target="_blank">CookBot Repo</Link>
           <Link to="https://github.com/tburzynski2" className="link-btn" target="_blank">
             Tom Burzynski
           </Link>
