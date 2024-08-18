@@ -102,11 +102,17 @@ const resolvers = {
 
     // Recipe Queries
     recipes: async () => {
-      return Recipe.find().populate("createdBy", "name");
+      return Recipe.find()
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
 
     recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId }).populate("createdBy", "name");
+      return Recipe.findOne({ _id: recipeId })
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
   },
 
