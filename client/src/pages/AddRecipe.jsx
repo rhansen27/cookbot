@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import AddIngredient from "../components/AddIngredient";
 import { QUERY_SINGLE_USER } from '../utils/queries'
-
+import AddIngredient from "../components/AddIngredient";
+import AddIngredientForm from "../components/AddIngredientForm"
 const AddRecipe = () => {
   const {profielId} = useParams()
 
@@ -11,6 +11,10 @@ const AddRecipe = () => {
   })
 
   const profile = data?.profile || {}
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <main>
