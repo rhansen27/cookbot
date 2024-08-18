@@ -5,7 +5,15 @@ import DislikeButton from "../DislikeButton";
 
 const { Meta } = Card;
 
-const RecipeCard = ({ title, imageURL, createdBy }) => (
+const RecipeCard = ({
+  title,
+  imageURL,
+  createdBy,
+  recipeId,
+  likes,
+  dislikes,
+  refetchRecipes,
+}) => (
   <div style={{ padding: "10px" }}>
     <Card
       hoverable
@@ -24,8 +32,18 @@ const RecipeCard = ({ title, imageURL, createdBy }) => (
           marginTop: "10px",
         }}
       >
-        <LikeButton />
-        <DislikeButton />
+        <LikeButton
+          recipeId={recipeId}
+          likes={likes}
+          dislikes={dislikes}
+          refetchRecipes={refetchRecipes}
+        />
+        <DislikeButton
+          recipeId={recipeId}
+          likes={likes}
+          dislikes={dislikes}
+          refetchRecipes={refetchRecipes}
+        />
       </div>
     </Card>
   </div>

@@ -45,10 +45,10 @@ const resolvers = {
         max_tokens: 350,
         top_p: 1,
       });
-      return response.choices[0].message
-    // ingredient: async (parent, { ingredientId }) => {
-    //   return Ingredient.findOne({ _id: ingredientId });
-    // },
+      return response.choices[0].message;
+      // ingredient: async (parent, { ingredientId }) => {
+      //   return Ingredient.findOne({ _id: ingredientId });
+      // },
     },
 
     // Ingredient Queries (Commented Out in Original)
@@ -102,11 +102,17 @@ const resolvers = {
 
     // Recipe Queries
     recipes: async () => {
-      return Recipe.find().populate("createdBy", "name");
+      return Recipe.find()
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
 
     recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId }).populate("createdBy", "name");
+      return Recipe.findOne({ _id: recipeId })
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
   },
 
@@ -184,6 +190,26 @@ const resolvers = {
 
     removeRecipe: async (parent, { recipeId }) => {
       return Recipe.findOneAndDelete({ _id: recipeId });
+    },
+
+    updateRecipe: async (parent, { recipeId, likes, dislikes }) => {
+      const updatedRecipe = await Recipe.findByIdAndUpdate(
+        recipeId,
+        {
+          likes: likes,
+          dislikes: dislikes,
+        },
+        { new: true }
+      )
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
+
+      if (!updatedRecipe) {
+        throw new Error("Recipe not found");
+      }
+
+      return updatedRecipe;
     },
   },
 };

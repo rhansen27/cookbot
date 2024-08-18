@@ -74,7 +74,38 @@ export const GET_RECIPES = gql`
       title
       imageURL
       cuisineType
+      dietType
       createdBy {
+        name
+      }
+      likes {
+        _id
+        name
+      }
+      dislikes {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const GET_RECIPE = gql`
+  query GetRecipe($recipeId: ID!) {
+    recipe(recipeId: $recipeId) {
+      _id
+      title
+      imageURL
+      cuisineType
+      createdBy {
+        name
+      }
+      likes {
+        _id
+        name
+      }
+      dislikes {
+        _id
         name
       }
     }
