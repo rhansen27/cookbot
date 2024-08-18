@@ -3,15 +3,6 @@ import { Carousel } from "antd";
 import RecipeCard from "../RecipeCard";
 import { GET_RECIPES } from "../../utils/queries";
 
-export const getRecipes = () => {
-  const { loading, error, data } = useQuery(GET_RECIPES);
-  return {
-    loading,
-    error,
-    recipes: data ? data.recipes : [],
-  };
-};
-
 const carouselSettings = {
   dots: true,
   slidesToShow: 4,
@@ -51,10 +42,12 @@ const carouselSettings = {
 };
 
 const RecipeCarousel = () => {
-  const { loading, error, recipes } = getRecipes();
+  const { loading, error, data, refetch } = useQuery(GET_RECIPES);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
+
+  const recipes = data?.recipes || [];
 
   return (
     <Carousel {...carouselSettings}>
@@ -63,8 +56,11 @@ const RecipeCarousel = () => {
           key={recipe._id}
           title={recipe.title}
           imageURL={recipe.imageURL}
-          cuisineType={recipe.cuisineType}
           createdBy={recipe.createdBy.name}
+          recipeId={recipe._id}
+          likes={recipe.likes}
+          dislikes={recipe.dislikes}
+          refetchRecipes={refetch}
         />
       ))}
     </Carousel>
