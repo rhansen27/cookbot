@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
+import { QUERY_SINGLE_USER } from '../utils/queries'
 import AddIngredient from "../components/AddIngredient";
-import { QUERY_SINGLE_USER } from "../utils/queries";
+import AddIngredientForm from "../components/AddIngredientForm"
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const AddRecipe = () => {
@@ -12,6 +13,10 @@ const AddRecipe = () => {
   });
 
   const profile = data?.profile || {};
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <ProtectedRoute>
