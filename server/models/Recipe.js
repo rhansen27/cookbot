@@ -59,6 +59,12 @@ const recipeSchema = new Schema({
       },
     ],
     default: [],
+    validate: {
+      validator: function (dislikes) {
+        return this.likes.every((user) => !this.dislikes.includes(user));
+      },
+      message: "A user cannot be in both the likes and dislikes array.",
+    },
   },
   dislikes: {
     type: [
@@ -68,6 +74,12 @@ const recipeSchema = new Schema({
       },
     ],
     default: [],
+    validate: {
+      validator: function (likes) {
+        return this.likes.every((user) => !this.likes.includes(user));
+      },
+      message: "A user cannot be in both the likes and dislikes array.",
+    },
   },
 });
 
