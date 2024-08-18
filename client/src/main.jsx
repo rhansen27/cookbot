@@ -11,6 +11,7 @@ import Error from './pages/Error';
 import AddRecipe from './pages/AddRecipe.jsx';
 import FindIngredient from './pages/FindIngredients.jsx';
 import NewRecipe from './pages/NewRecipe.jsx';
+import AboutUs from './pages/AboutUs.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,9 @@ const router = createBrowserRouter([
       }, {
         path: '/NewRecipe',
         element: <NewRecipe />
+      }, {
+        path: 'AboutUs',
+        element: <AboutUs />
       }
     ]
   }

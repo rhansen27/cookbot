@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Space, Upload, Alert, TreeSelect, notification } from 'antd';
+import { Button, Form, Input, Space, Upload, TreeSelect, notification } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { useMutation, useQuery } from '@apollo/client'
 import { Navigate, useParams } from 'react-router-dom';
@@ -238,11 +238,10 @@ const NotifySuccess = () => {
 
 const AddIngredient = () => (
   
-  <Form
+  <div className='form-container'>
+    <Form
+    className='ingredient-form'
     name="dynamic_form_nest_item"
-    style={{
-      maxWidth: 600,
-    }}
     autoComplete="off"
     onFinish={(values) => 
       handleFormSubmit(values)
@@ -251,22 +250,10 @@ const AddIngredient = () => (
     <Form.Item label="Add Image" valuePropName="fileList" getValueFromEvent={normFile} name="image">
       <Upload action="/upload.do" listType="picture-card" maxCount={1}
       >
-        <button
-          style={{
-            border: 0,
-            background: 'none',
-          }}
-          type="button"
-        >
-          <PlusOutlined />
-          <div
-            style={{
-              marginTop: 8,
-            }}
-          >
-            Upload
+        <div className="upload-button">
+            <PlusOutlined />
+            <div className="upload-text">Upload</div>
           </div>
-        </button>
       </Upload>
     </Form.Item>
     Add Recipe Name
@@ -282,10 +269,7 @@ const AddIngredient = () => (
           {fields.map(({ key, name, ...restField }) => (
             <Space
               key={key}
-              style={{
-                display: 'flex',
-                marginBottom: 8,
-              }}
+              className='ingredient-space'
               align="baseline"
             >
               <Form.Item
@@ -328,20 +312,12 @@ const AddIngredient = () => (
             <TextArea  rows={4}/>
           </Form.Item>
     <Form.Item
-      wrapperCol={{
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      }}
+     className='submit-button-container'
     >
       <NotifySuccess/>
     </Form.Item>
   </Form>
+  </div>
 );
 
 export default AddIngredient;

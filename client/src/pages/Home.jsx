@@ -1,15 +1,11 @@
-import LikeButton from "../components/Likebutton";
-import DislikeButton from "../components/DislikeButton";
-import IngredientBot from "../components/IngredientBot";
-
 import RecipeCarousel from "../components/RecipeCarousel";
 
 const Home = () => {
   return (
     <main>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
-          <h1>Home</h1>
+      <div className="new-recipe-container">
+        <div className="content-box">
+          <h1 className="page-title">Delicious Recipes</h1>
         </div>
       </div>
       <RecipeCarousel />
