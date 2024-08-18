@@ -74,7 +74,16 @@ export const GET_RECIPES = gql`
       title
       imageURL
       cuisineType
+      dietType
       createdBy {
+        name
+      }
+      likes {
+        _id
+        name
+      }
+      dislikes {
+        _id
         name
       }
     }
