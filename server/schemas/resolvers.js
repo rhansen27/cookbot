@@ -186,23 +186,37 @@ const resolvers = {
       return Recipe.findOneAndDelete({ _id: recipeId });
     },
 
-    updateRecipe: async (parent, { recipeId, userId, like }) => {
+    updateRecipe: async (parent, { recipeId, userId, like }, context) => {
       const recipe = await Recipe.findById(recipeId);
-      if (!recipe) throw new Error("Recipe not found");
+
+      if (!recipe) {
+        throw new Error("Recipe not found");
+      }
 
       if (like) {
-        recipe.likes.addToSet(userId);
-        recipe.dislikes.pull(userId);
+        recipe.dislikes = recipe.dislikes.filter(
+          (dislikeUserId) => dislikeUserId.toString() !== userId
+        );
+        if (!recipe.likes.includes(userId)) {
+          recipe.likes.push(userId);
+        }
       } else {
-        recipe.dislikes.addToSet(userId);
-        recipe.likes.pull(userId);
+        recipe.likes = recipe.likes.filter(
+          (likeUserId) => likeUserId.toString() !== userId
+        );
+        if (!recipe.dislikes.includes(userId)) {
+          recipe.dislikes.push(userId);
+        }
       }
 
       await recipe.save();
-      return recipe
+
+      const populatedRecipe = await Recipe.findById(recipeId)
         .populate("createdBy", "name")
         .populate("likes", "name")
         .populate("dislikes", "name");
+
+      return populatedRecipe;
     },
   },
 };
