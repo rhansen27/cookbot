@@ -25,8 +25,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const UPDATE_RECIPE = gql`
-  mutation updateRecipe($recipeId: ID!, $userId: ID!, $like: Boolean!) {
-    updateRecipe(recipeId: $recipeId, userId: $userId, like: $like) {
+  mutation updateRecipe($recipeId: ID!, $likes: [ID]!, $dislikes: [ID]!) {
+    updateRecipe(recipeId: $recipeId, likes: $likes, dislikes: $dislikes) {
       _id
       title
       likes {
