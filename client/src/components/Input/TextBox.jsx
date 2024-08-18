@@ -7,8 +7,8 @@ export default function TextBox() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const form = e.target;
-    console.log(form);
+    const formData = e.target.elements.userInfo.value;
+    console.log(formData);
   }
 
   return (
@@ -19,7 +19,7 @@ export default function TextBox() {
         defaultValue="Enter your information here"
         rows={4}
       />
-      <Button type="primary">Save</Button>
+      <button type="submit">Save</button>
     </form>
   );
 }
