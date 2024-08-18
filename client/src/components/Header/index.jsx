@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
 import Auth from '../../utils/auth';
 
 const Header = () => {
@@ -7,46 +7,33 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+
   return (
-    <header className="bg-info text-dark  display-flex align-center">
-      <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <Link className="text-dark" to="/">
-          <img src={logo} alt="logo" style={{borderRadius: 30}} />
-          <h1 className="m-0" style={{ fontSize: '2rem' }}>
-            Cook Bot 
-          </h1>
+    <header className="header">
+      <div className="logo-container">
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="logo" className="logo" />
+          <h1 className="header-title">Cook Bot</h1>
         </Link>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-primary m-1" to="/me">
-                View My Profile
-              </Link>
-              <Link className="btn btn-lg btn-primary m-1" to="/AddRecipe">
-                Add Recipe
-              </Link>
-              <Link className="btn btn-lg btn-primary m-1" to="/FindIngredients">
-                AI Recipe with Ingredients
-              </Link>
-              <Link className="btn btn-lg btn-primary m-1" to="/NewRecipe">
-                Find New Recipe
-              </Link>
-              <button className="btn btn-lg btn-light m-1" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-primary m-1" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-1" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
       </div>
+      <nav className="nav-links">
+        {Auth.loggedIn() ? (
+          <>
+            <Link to="/me" className="nav-button">View My Profile</Link>
+            <Link to="/AddRecipe" className="nav-button">Add Recipe</Link>
+            <Link to="/FindIngredients" className="nav-button">AI Recipe with Ingredients</Link>
+            <Link to="/NewRecipe" className="nav-button">Find New Recipe</Link>
+            <Link to="/AboutUs" className="nav-button">About Us</Link>
+            <button className="nav-button logout-button" onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/AboutUs" className="nav-button">About Us</Link>
+            <Link to="/login" className="nav-button">Login</Link>
+            <Link to="/signup" className="nav-button">Signup</Link>
+          </>
+        )}
+      </nav>
     </header>
   );
 };

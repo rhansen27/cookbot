@@ -1,16 +1,14 @@
 import IngredientBot from "../components/IngredientBot";
-
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const FindIngredient = () => {
   return (
-    <main>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
-          <h2>AI Recipe with Ingredients</h2>
-          <IngredientBot />
-        </div>
-      </div>
-    </main>
+    <ProtectedRoute>
+      <main>
+        <h2 className="ai-title">AI Recipe with Ingredients</h2>
+        <IngredientBot />
+      </main>
+    </ProtectedRoute>
   );
 };
 

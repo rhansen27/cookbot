@@ -45,7 +45,7 @@ const resolvers = {
         max_tokens: 350,
         top_p: 1,
       });
-
+      return response.choices[0].message
     // ingredient: async (parent, { ingredientId }) => {
     //   return Ingredient.findOne({ _id: ingredientId });
     // },

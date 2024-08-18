@@ -1,7 +1,31 @@
 import React, { useState } from 'react';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Space, Upload, Alert, TreeSelect, notification } from 'antd';
+import { Button, Form, Input, Space, Upload, TreeSelect, notification } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { useMutation, useQuery } from '@apollo/client'
+import { Navigate, useParams } from 'react-router-dom';
+// import { ADD_RECIPE } from '../../utils/mutations.js'
+
+import { QUERY_SINGLE_USER, QUERY_ME } from '../../utils/queries';
+
+import Auth from '../../utils/auth.js';
+
+const Profile = () => {
+  const { userId } = useParams();
+
+  // If there is no `userId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
+  const { loading, data } = useQuery(
+    userId ? QUERY_SINGLE_USER : QUERY_ME,
+    {
+      variables: { userId },
+    }
+  );
+
+  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
+  const user = data?.me || data?.user || {};
+  console.log(user)
+}
+
 const recipeData = {}
 const normFile = (e) => {
   if (Array.isArray(e)) {
@@ -9,6 +33,7 @@ const normFile = (e) => {
   }
   return e?.fileList;
 };
+
 const treeData = [
   {
     title: 'Meal Type',
@@ -160,6 +185,7 @@ const FilterSelect = () => {
     },
   };
   console.log(<TreeSelect {...tProps} />)
+  Profile()
   const treeInfo = <TreeSelect {...tProps} />
   if(treeInfo.props.value){
     let filters = []
@@ -172,9 +198,18 @@ const FilterSelect = () => {
   return <TreeSelect {...tProps} />;
 };
 
-const handleFormSubmit = (values) => {
-  const allData = {...values, ...recipeData}
-  return allData
+const handleFormSubmit = async (values) => {
+
+  const recipe = {...values, ...recipeData}
+  console.log(recipe)
+  const [addRecipe, { error }] = useMutation(ADD_RECIPE)
+  console.log(addRecipe)
+
+  await addRecipe({
+      variables: { recipe }
+  })
+  
+  console.log(allData)
 }
 
 const NotifySuccess = () => {
@@ -203,11 +238,10 @@ const NotifySuccess = () => {
 
 const AddIngredient = () => (
   
-  <Form
+  <div className='form-container'>
+    <Form
+    className='ingredient-form'
     name="dynamic_form_nest_item"
-    style={{
-      maxWidth: 600,
-    }}
     autoComplete="off"
     onFinish={(values) => 
       handleFormSubmit(values)
@@ -216,26 +250,14 @@ const AddIngredient = () => (
     <Form.Item label="Add Image" valuePropName="fileList" getValueFromEvent={normFile} name="image">
       <Upload action="/upload.do" listType="picture-card" maxCount={1}
       >
-        <button
-          style={{
-            border: 0,
-            background: 'none',
-          }}
-          type="button"
-        >
-          <PlusOutlined />
-          <div
-            style={{
-              marginTop: 8,
-            }}
-          >
-            Upload
+        <div className="upload-button">
+            <PlusOutlined />
+            <div className="upload-text">Upload</div>
           </div>
-        </button>
       </Upload>
     </Form.Item>
     Add Recipe Name
-    <Form.Item name="recipe name">
+    <Form.Item name="recipeName">
       <Input placeholder="Recipe Name" />
     </Form.Item>
     Add Filters
@@ -247,10 +269,7 @@ const AddIngredient = () => (
           {fields.map(({ key, name, ...restField }) => (
             <Space
               key={key}
-              style={{
-                display: 'flex',
-                marginBottom: 8,
-              }}
+              className='ingredient-space'
               align="baseline"
             >
               <Form.Item
@@ -293,20 +312,12 @@ const AddIngredient = () => (
             <TextArea  rows={4}/>
           </Form.Item>
     <Form.Item
-      wrapperCol={{
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      }}
+     className='submit-button-container'
     >
       <NotifySuccess/>
     </Form.Item>
   </Form>
+  </div>
 );
 
 export default AddIngredient;
