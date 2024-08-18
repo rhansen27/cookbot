@@ -15,6 +15,7 @@
 * GraphQL: Query language for interacting with APIs
 * Apollo Client: State management and GraphQL client
 * Edamam API: External recipe data provider
+* Chat-GPT 3.5: Creating recipe based on ingredients
 
 ## Usage
 * Search for Recipes: Use the search input to enter an ingredient (e.g., "chicken") and click the "Find My Recipe" button.
@@ -22,7 +23,9 @@
 * View Recipe Details: The search results will display cards with recipe images, ingredients, and a link to view the full recipe.
 
 ## Application Page
-* ![]()
+* ![Application-1](./client/public/app-ss/1.png)
+* ![Application-2](./client/public/app-ss/2.png)
+* ![Application-3](./client/public/app-ss/3.png)
 
 ## Contributors
 * [Tom Burzynski](https://github.com/tburzynski2)
