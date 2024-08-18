@@ -45,10 +45,10 @@ const resolvers = {
         max_tokens: 350,
         top_p: 1,
       });
-      return response.choices[0].message
-    // ingredient: async (parent, { ingredientId }) => {
-    //   return Ingredient.findOne({ _id: ingredientId });
-    // },
+      return response.choices[0].message;
+      // ingredient: async (parent, { ingredientId }) => {
+      //   return Ingredient.findOne({ _id: ingredientId });
+      // },
     },
 
     // Ingredient Queries (Commented Out in Original)
@@ -184,6 +184,25 @@ const resolvers = {
 
     removeRecipe: async (parent, { recipeId }) => {
       return Recipe.findOneAndDelete({ _id: recipeId });
+    },
+
+    updateRecipe: async (parent, { recipeId, userId, like }) => {
+      const recipe = await Recipe.findById(recipeId);
+      if (!recipe) throw new Error("Recipe not found");
+
+      if (like) {
+        recipe.likes.addToSet(userId);
+        recipe.dislikes.pull(userId);
+      } else {
+        recipe.dislikes.addToSet(userId);
+        recipe.likes.pull(userId);
+      }
+
+      await recipe.save();
+      return recipe
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
   },
 };

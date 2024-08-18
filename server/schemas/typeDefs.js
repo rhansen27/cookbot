@@ -109,6 +109,8 @@ const typeDefs = `
     removeIngredient(ingredientId: ID!): Ingredient
 
     removeRecipe(recipeId: ID!): Recipe
+
+    updateRecipe(recipeId: ID!, userId: ID!, like: Boolean!): Recipe
   }
 
     input IngredientInRecipeInput {
