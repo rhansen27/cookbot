@@ -1,12 +1,12 @@
 require("dotenv").config();
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const { User, Ingredient, Recipe } = require("../models");
+const { User, Ingredient, Recipe, UserRecipe } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
-const { OpenAI } = require("openai");
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// const { OpenAI } = require("openai");
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
 
 const resolvers = {
   Query: {
@@ -27,29 +27,29 @@ const resolvers = {
     },
 
     // AI-powered recipe generation
-    getRecipeFromAi: async (parent, { ingredients }) => {
-      const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a recipe expert. You will receive ingredients and based on that information, you will find a recipe. In the response, I want to see the title, description, and steps to make that recipe.",
-          },
-          {
-            role: "user",
-            content: `Ingredients: ${ingredients}`,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 350,
-        top_p: 1,
-      });
-      return response.choices[0].message
-    // ingredient: async (parent, { ingredientId }) => {
-    //   return Ingredient.findOne({ _id: ingredientId });
+    // getRecipeFromAi: async (parent, { ingredients }) => {
+    //   const response = await openai.chat.completions.create({
+    //     model: "gpt-3.5-turbo",
+    //     messages: [
+    //       {
+    //         role: "system",
+    //         content:
+    //           "You are a recipe expert. You will receive ingredients and based on that information, you will find a recipe. In the response, I want to see the title, description, and steps to make that recipe.",
+    //       },
+    //       {
+    //         role: "user",
+    //         content: `Ingredients: ${ingredients}`,
+    //       },
+    //     ],
+    //     temperature: 0.7,
+    //     max_tokens: 350,
+    //     top_p: 1,
+    //   });
+    //   return response.choices[0].message
+    // // ingredient: async (parent, { ingredientId }) => {
+    // //   return Ingredient.findOne({ _id: ingredientId });
+    // // },
     // },
-    },
 
     // Ingredient Queries (Commented Out in Original)
     ingredients: async () => {
@@ -180,6 +180,26 @@ const resolvers = {
       });
       await recipe.save();
       return recipe;
+    },
+
+    addUserRecipe: async (
+      parent, args,
+      {
+        title,
+        ingredients,
+        description,
+        filter,
+        createdBy,
+      }
+    ) => {
+      const recipe = new UserRecipe({
+        title,
+        ingredients,
+        filter,
+        description,
+        createdBy,
+      });
+      return (await UserRecipe.create(args)).populate('createdBy')
     },
 
     removeRecipe: async (parent, { recipeId }) => {
