@@ -57,7 +57,7 @@ const carouselSettings = {
 };
 
 const RecipeCarousel = ({ userId }) => {
-  const { loading, error, recipes } = getRecipes(userId);
+  const { loading, error, data } = getRecipes(userId);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
