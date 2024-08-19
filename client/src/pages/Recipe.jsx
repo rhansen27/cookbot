@@ -23,7 +23,7 @@ const RecipeDetailPage = () => {
   const recipe = data.recipe;
 
   return (
-    <Card className="recipe-card">
+    <Card className="recipe-card" style={{backgroundColor: '#EECEB9'}}>
       <Title level={2}>{recipe.title}</Title>
 
       <Text type="secondary">
