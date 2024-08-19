@@ -27,7 +27,7 @@ const AboutUs = () => {
           As four dedicated students, our goal is to help you discover all the
           delicious recipes that will make your home even more delightful.
         </p>
-        <h2 style={{textAlign: 'center'}}>Github Links to Contributors</h2>
+        <h2 style={{textAlign: 'center'}}>Github Links to Contributors and Repo</h2>
         <div className="link-buttons">
           <Link to="https://github.com/rhansen27/cookbot" className="link-btn" target="_blank">CookBot Repo</Link>
           <Link to="https://github.com/tburzynski2" className="link-btn" target="_blank">

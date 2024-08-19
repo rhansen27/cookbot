@@ -6,7 +6,7 @@ import DislikeButton from "../DislikeButton";
 import Auth from "../../utils/auth";
 import { REMOVE_RECIPE } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
-import { GET_RECIPES_BY_USERID, GET_RECIPES } from "../../utils/queries";
+import { GET_RECIPES_BY_USERID } from "../../utils/queries";
 
 const { Meta } = Card;
 
@@ -21,6 +21,11 @@ const RecipeCard = ({
   refetchRecipes,
   userId,
 }) => {
+
+  // random colors add more!!!
+  const colors = ["#F3C5C5", "#C1A3A3", "#7F78D2", "#364547", "#E3C878", "#F6FDC3", "#293462", "#EEEEEE", "#D195F9", "#1D5B79", "#FFEFEF", "#C24B39"];
+  // function will give you random colors
+  const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
   // console.log(recipeId)
   let location = useLocation();
   const [removeRecipe] = useMutation(REMOVE_RECIPE)
@@ -40,6 +45,8 @@ const RecipeCard = ({
         borderRadius: "8px",
         overflow: "hidden",
         margin: "0px 10px",
+        backgroundColor: getRandomColor(),
+        marginBottom: '1.5rem'
       }}
     >
       <Meta title={title} description={`Created by: ${createdBy.name}`} />

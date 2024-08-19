@@ -5,7 +5,6 @@ import { QUERY_SINGLE_USER, QUERY_ME } from "../utils/queries";
 import RecipeCarousel from "../components/RecipeCarousel/index";
 
 import UserBio from "../components/Input/UserBio";
-import SubmitButton from "../components/Input/SubmitButton";
 import DeleteButton from "../components/Input/DeleteButton";
 
 import Auth from "../utils/auth";
@@ -34,25 +33,22 @@ const Profile = () => {
 
   if (!user?.name) {
     return (
-      <h4>
+      <h4 className="not-loggen-in">
         You need to be logged in to see your user page. Use the navigation links
         above to sign up or log in!
       </h4>
     );
   }
-  // TODO: add styles
   return (
-    <div className="container">
-      <h1 className="card-header">{user.name}</h1>
-      <DeleteButton />
-
-
-      <div className="card-body">
-        <h5 className="card-title">About Me:</h5>
+    <div className="profile-container">
+      <h1 className="profile-header">{user.name}</h1>
+      <div className="profile-card-body">
+        <h5 className="profile-card-title">About Me</h5>
         <UserBio bio={user.bio} />
         {/* <SubmitButton /> */}
       </div>
       <RecipeCarousel userId={user._id} />
+      <DeleteButton />
     </div>
   );
 };
