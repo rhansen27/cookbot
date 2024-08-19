@@ -15,12 +15,18 @@ const resolvers = {
       return User.find();
     },
 
+    getRecipesByUserId: async (parent, { userId }) => {
+      return Recipe.find({ createdBy: userId }).populate("createdBy", "name");
+    },
+
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
 
     me: async (parent, args, context) => {
+      console.log(context.user);
       if (context.user) {
+        console.log(context.user);
         return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
@@ -135,6 +141,17 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    updateUserBio: async (parent, { bio }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { bio },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
     },
 
     login: async (parent, { email, password }) => {

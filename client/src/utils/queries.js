@@ -5,7 +5,7 @@ export const QUERY_USERS = gql`
     users {
       _id
       name
-      skills
+      bio
     }
   }
 `;
@@ -15,7 +15,7 @@ export const QUERY_SINGLE_USER = gql`
     user(userId: $userId) {
       _id
       name
-      skills
+      bio
     }
   }
 `;
@@ -25,7 +25,7 @@ export const QUERY_ME = gql`
     me {
       _id
       name
-      skills
+      bio
     }
   }
 `;
@@ -122,6 +122,20 @@ export const GET_RECIPE = gql`
         ingredient {
           name
         }
+      }
+    }
+  }
+`;
+
+export const GET_RECIPES_BY_USERID = gql`
+  query GetRecipesByUserId($userId: ID!) {
+    getRecipesByUserId(userId: $userId) {
+      _id
+      title
+      imageURL
+      cuisineType
+      createdBy {
+        name
       }
     }
   }
