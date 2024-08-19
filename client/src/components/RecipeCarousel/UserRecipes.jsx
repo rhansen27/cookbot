@@ -1,19 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { Carousel } from "antd";
 import RecipeCard from "../RecipeCard";
-import { GET_RECIPES_BY_USERID, GET_RECIPES } from "../../utils/queries";
+import { GET_RECIPES } from "../../utils/queries";
 
-export const getRecipes = (userId) => {
-  const { loading, error, data } = useQuery(
-    userId ? GET_RECIPES_BY_USERID : GET_RECIPES,
-    {
-      variables: { userId },
-    }
-  );
+export const getRecipes = () => {
+  const { loading, error, data } = useQuery(GET_RECIPES);
   return {
     loading,
     error,
-    recipes: data?.recipes || data?.getRecipesByUserId || [],
+    recipes: data ? data.recipes : [],
   };
 };
 
@@ -55,8 +50,8 @@ const carouselSettings = {
   ],
 };
 
-const RecipeCarousel = ({ userId }) => {
-  const { loading, error, recipes } = getRecipes(userId);
+const RecipeCarousel = () => {
+  const { loading, error, recipes } = getRecipes();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
@@ -65,14 +60,11 @@ const RecipeCarousel = ({ userId }) => {
     <Carousel {...carouselSettings}>
       {recipes.map((recipe) => (
         <RecipeCard
-          userId={userId}
           key={recipe._id}
           title={recipe.title}
           imageURL={recipe.imageURL}
-          createdBy={recipe.createdBy}
-          recipeId={recipe._id}
-          likes={recipe.likes}
-          dislikes={recipe.dislikes}
+          cuisineType={recipe.cuisineType}
+          createdBy={recipe.createdBy.name}
         />
       ))}
     </Carousel>

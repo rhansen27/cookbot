@@ -5,7 +5,7 @@ export const QUERY_USERS = gql`
     users {
       _id
       name
-      skills
+      bio
     }
   }
 `;
@@ -15,7 +15,7 @@ export const QUERY_SINGLE_USER = gql`
     user(userId: $userId) {
       _id
       name
-      skills
+      bio
     }
   }
 `;
@@ -25,7 +25,7 @@ export const QUERY_ME = gql`
     me {
       _id
       name
-      recipes
+      bio
     }
   }
 `;
@@ -70,6 +70,66 @@ export const GET_FILTERED_RECIPES = gql`
 export const GET_RECIPES = gql`
   query GetRecipes {
     recipes {
+      _id
+      title
+      imageURL
+      cuisineType
+      dietType
+      createdBy {
+        name
+      }
+      likes {
+        _id
+        name
+      }
+      dislikes {
+        _id
+        name
+      }
+      instructions
+      ingredients {
+        quantity
+        ingredient {
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const GET_RECIPE = gql`
+  query GetRecipe($recipeId: ID!) {
+    recipe(recipeId: $recipeId) {
+      _id
+      title
+      imageURL
+      cuisineType
+      dietType
+      createdBy {
+        name
+      }
+      likes {
+        _id
+        name
+      }
+      dislikes {
+        _id
+        name
+      }
+      instructions
+      ingredients {
+        quantity
+        ingredient {
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const GET_RECIPES_BY_USERID = gql`
+  query GetRecipesByUserId($userId: ID!) {
+    getRecipesByUserId(userId: $userId) {
       _id
       title
       imageURL

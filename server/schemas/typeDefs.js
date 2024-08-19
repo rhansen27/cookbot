@@ -4,6 +4,7 @@ const typeDefs = `
     name: String
     email: String
     password: String
+    bio: String
   }
 
   type Auth {
@@ -26,16 +27,16 @@ const typeDefs = `
     url: String
     ingredients: [IngredientFilter]
   }
-   type OpenAiResponseChoiceMessage {
-   content: String
-   }
 
+  type OpenAiResponseChoiceMessage {
+    content: String
+  }
 
   type OpenAiResponseChoice {
-        message: OpenAiResponseChoiceMessage
-      }
+    message: OpenAiResponseChoiceMessage
+  }
 
-  type OpenAiResponse{
+  type OpenAiResponse {
     content: String
   }
 
@@ -49,6 +50,7 @@ const typeDefs = `
   type IngredientInRecipe {
     ingredientId: ID!
     quantity: String!
+    ingredient: Ingredient
   }
 
   type Recipe {
@@ -82,7 +84,6 @@ const typeDefs = `
   type Query {
     users: [User]!
     user(userId: ID!): User
-    # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: User
     getRecipeFromAi(ingredients: String!): OpenAiResponse
     getFilteredRecipes(
@@ -96,11 +97,14 @@ const typeDefs = `
     ingredient(ingredientId: ID!): Ingredient
 
     recipes: [Recipe]!
-    recipe(recipeId: ID!): Recipe
+    recipe(recipeId: ID!): Recipe 
+    getRecipesByUserId(userId: ID!): [Recipe]
   }
   
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
+
+    updateUserBio(bio: String!): User
     
     login(email: String!, password: String!): Auth
 
@@ -130,11 +134,14 @@ const typeDefs = `
     removeIngredient(ingredientId: ID!): Ingredient
 
     removeRecipe(recipeId: ID!): Recipe
+
+    updateRecipe(recipeId: ID!, likes: [ID]!, dislikes: [ID]!): Recipe
+
   }
 
-    input IngredientInRecipeInput {
-      ingredientId: ID!
-      quantity: String!
+  input IngredientInRecipeInput {
+    ingredientId: ID!
+    quantity: String!
   }
 
     input IngredientAmountInput {

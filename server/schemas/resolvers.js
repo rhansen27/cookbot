@@ -3,10 +3,10 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const { User, Ingredient, Recipe, UserRecipe } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
-// const { OpenAI } = require("openai");
-// const openai = new OpenAI({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
+const { OpenAI } = require("openai");
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const resolvers = {
   Query: {
@@ -15,43 +15,49 @@ const resolvers = {
       return User.find();
     },
 
+    getRecipesByUserId: async (parent, { userId }) => {
+      return Recipe.find({ createdBy: userId }).populate("createdBy", "name");
+    },
+
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
 
     me: async (parent, args, context) => {
+      console.log(context.user);
       if (context.user) {
+        console.log(context.user);
         return User.findOne({ _id: context.user._id });
       }
       throw AuthenticationError;
     },
 
     // AI-powered recipe generation
-    // getRecipeFromAi: async (parent, { ingredients }) => {
-    //   const response = await openai.chat.completions.create({
-    //     model: "gpt-3.5-turbo",
-    //     messages: [
-    //       {
-    //         role: "system",
-    //         content:
-    //           "You are a recipe expert. You will receive ingredients and based on that information, you will find a recipe. In the response, I want to see the title, description, and steps to make that recipe.",
-    //       },
-    //       {
-    //         role: "user",
-    //         content: `Ingredients: ${ingredients}`,
-    //       },
-    //     ],
-    //     temperature: 0.7,
-    //     max_tokens: 350,
-    //     top_p: 1,
-    //   });
-    //   return response.choices[0].message
-    // // ingredient: async (parent, { ingredientId }) => {
-    // //   return Ingredient.findOne({ _id: ingredientId });
-    // // },
-    // },
+    getRecipeFromAi: async (parent, { ingredients }) => {
+      const response = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a recipe expert. You will receive ingredients and based on that information, you will find a recipe. In the response, I want to see the title, description, and steps to make that recipe.",
+          },
+          {
+            role: "user",
+            content: `Ingredients: ${ingredients}`,
+          },
+        ],
+        temperature: 0.7,
+        max_tokens: 350,
+        top_p: 1,
+      });
+      return response.choices[0].message;
+      // ingredient: async (parent, { ingredientId }) => {
+      //   return Ingredient.findOne({ _id: ingredientId });
+      // },
+    },
 
-    // Ingredient Queries (Commented Out in Original)
+    // Ingredient Queries
     ingredients: async () => {
       return Ingredient.find();
     },
@@ -102,11 +108,29 @@ const resolvers = {
 
     // Recipe Queries
     recipes: async () => {
-      return Recipe.find().populate("createdBy", "name");
+      return Recipe.find()
+        .populate("createdBy", "name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
 
     recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId }).populate("createdBy", "name");
+      return Recipe.findOne({ _id: recipeId })
+        .populate("createdBy", "name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
   },
 
@@ -117,6 +141,23 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+
+    removeUser: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOneAndDelete({ _id: context.user._id });
+      }
+    },
+
+    updateUserBio: async (parent, { bio }, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { bio },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
     },
 
     login: async (parent, { email, password }) => {
@@ -204,6 +245,26 @@ const resolvers = {
 
     removeRecipe: async (parent, { recipeId }) => {
       return Recipe.findOneAndDelete({ _id: recipeId });
+    },
+
+    updateRecipe: async (parent, { recipeId, likes, dislikes }) => {
+      const updatedRecipe = await Recipe.findByIdAndUpdate(
+        recipeId,
+        {
+          likes: likes,
+          dislikes: dislikes,
+        },
+        { new: true }
+      )
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
+
+      if (!updatedRecipe) {
+        throw new Error("Recipe not found");
+      }
+
+      return updatedRecipe;
     },
   },
 };

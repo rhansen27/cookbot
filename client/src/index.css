@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-image: url('/background/background-image-3.jpg');
+  background-image: url("/background/background-image-5.jpg");
   background-size: cover;
   background-position: center 10%;
   background-attachment: fixed;
@@ -14,7 +14,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container {
@@ -27,7 +27,7 @@ body {
   height: 75px;
   border-radius: 40%;
   margin-right: 1rem;
-  box-shadow: 1px 0px 20px rgba(0, 0, 0, 1); 
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 1);
 }
 
 .header-title {
@@ -41,14 +41,14 @@ body {
 .nav-links {
   display: flex;
   justify-content: center;
-  gap: 2rem; 
+  gap: 2rem;
 }
 
 .nav-button {
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   color: white;
-  background-color: green; 
+  background-color: green;
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -58,12 +58,12 @@ body {
 .nav-button:hover {
   background-color: yellow;
   color: black;
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .logout-button:hover {
   background-color: black;
-  color: white; 
+  color: white;
 }
 
 .new-recipe-container {
@@ -86,7 +86,7 @@ body {
 }
 
 .page-title {
-  font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Regular', sans-serif;
+  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Regular", sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
   color: white;
@@ -100,7 +100,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-color: #CCD5AE;
+  background-color: #ccd5ae;
   border-radius: 20px;
   max-width: 700px;
   margin: 0 auto;
@@ -112,7 +112,7 @@ body {
 }
 
 .ai-button {
-  background-color: #7C5BEA;
+  background-color: #7c5bea;
   width: 200px;
   text-align: center;
   margin-top: 10px;
@@ -120,12 +120,12 @@ body {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 .ai-button:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .ai-div {
   margin-top: 20px;
-  background-color: #F2E8C6;
+  background-color: #f2e8c6;
   padding: 1.5rem;
   border-radius: 20px;
   color: black;
@@ -134,9 +134,8 @@ body {
   max-width: 650px;
 }
 
-
 .ai-title {
-  font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Regular', sans-serif;
+  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Regular", sans-serif;
   text-align: center;
   font-size: 2.2rem;
   color: white;
@@ -146,7 +145,7 @@ body {
 }
 
 .ai-h2 {
-  font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Regular', sans-serif;
+  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Regular", sans-serif;
   text-align: center;
   font-size: 1.8rem;
   color: black;
@@ -167,7 +166,7 @@ body {
 
 .ai-steps li {
   margin-bottom: 1rem;
-  font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Regular', sans-serif;
+  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Regular", sans-serif;
 }
 
 .form-container {
@@ -181,7 +180,7 @@ body {
   width: 100%;
   max-width: 600px;
   padding: 20px;
-  background-color: #CCD5AE;
+  background-color: #ccd5ae;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
 }
@@ -295,7 +294,6 @@ button:hover {
   background-color: #40a9ff;
 }
 
-
 .about-us-container {
   display: flex;
   justify-content: center;
@@ -308,7 +306,7 @@ button:hover {
   padding: 20px;
   max-width: 1000px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #B5CFB7;
+  background-color: #b5cfb7;
 }
 
 .about-us-title {
@@ -318,7 +316,6 @@ button:hover {
   margin-bottom: 20px;
   text-align: center;
 }
-
 
 .about-us-text {
   margin-left: 50px;
@@ -336,10 +333,9 @@ button:hover {
   margin-top: 20px;
 }
 
-
 .link-btn {
   display: inline-block;
-  background-color: #7A1CAC;
+  background-color: #7a1cac;
   color: #fff;
   padding: 8px 15px;
   margin: 30px;
@@ -349,26 +345,32 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
-
 .link-btn:hover {
-  background-color: #AD49E1;
+  background-color: #ad49e1;
 }
 
+/* Recipes
+     ==========================================================================
+*/
 
-/* Carousel
-     ========================================================================== */
-/*
-
-/* Customize the left arrow */
-.slick-prev {
-  left: -2rem !important; /* Adjust position */
-  color: #000 !important; /* Change arrow color */
+.recipe-card {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
 }
 
-/* Customize the right arrow */
-.slick-next {
-  right: -2rem !important; /* Adjust position */
-  color: #000 !important; /* Change arrow color */
+.recipe-image {
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.like-dislike-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  width: 300px;
 }
 
 @media (max-width: 768px) {
