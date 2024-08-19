@@ -1,7 +1,7 @@
 require("dotenv").config();
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-const { User, Ingredient, Recipe } = require("../models");
+const { User, Ingredient, Recipe, UserRecipe } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { OpenAI } = require("openai");
 const openai = new OpenAI({
@@ -221,6 +221,26 @@ const resolvers = {
       });
       await recipe.save();
       return recipe;
+    },
+
+    addUserRecipe: async (
+      parent, args,
+      {
+        title,
+        ingredients,
+        description,
+        filter,
+        createdBy,
+      }
+    ) => {
+      const recipe = new UserRecipe({
+        title,
+        ingredients,
+        filter,
+        description,
+        createdBy,
+      });
+      return (await UserRecipe.create(args)).populate('createdBy')
     },
 
     removeRecipe: async (parent, { recipeId }) => {

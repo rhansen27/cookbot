@@ -67,6 +67,20 @@ const typeDefs = `
     dislikes: [User]!
   }
 
+  type IngredientAmount {
+    ingredient: String!
+    amount: String!
+  }
+
+  type UserRecipe {
+    _id: ID!
+    title: String!
+    ingredients: [IngredientAmount]!
+    description: String!
+    filter: [String]!
+    createdBy: User
+  }
+
   type Query {
     users: [User]!
     user(userId: ID!): User
@@ -109,6 +123,14 @@ const typeDefs = `
       aiGenerated: Boolean
     ): Recipe
 
+    addUserRecipe(
+      title: String!
+      ingredients: [IngredientAmountInput]!
+      description: String!
+      filter: [String]!
+      createdBy: ID!
+    ): UserRecipe
+
     removeIngredient(ingredientId: ID!): Ingredient
 
     removeRecipe(recipeId: ID!): Recipe
@@ -120,6 +142,11 @@ const typeDefs = `
   input IngredientInRecipeInput {
     ingredientId: ID!
     quantity: String!
+  }
+
+    input IngredientAmountInput {
+    ingredient: String!
+    amount: String!
   }
 `;
 

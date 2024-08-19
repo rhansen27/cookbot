@@ -24,6 +24,24 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_RECIPE = gql`
+  mutation addRecipe($title: String!, $ingredients: [IngredientAmountInput]!, $description: String!, $filter: [String]!, $createdBy: ID!) {
+    addUserRecipe(title: $title, ingredients: $ingredients, description: $description, filter: $filter, createdBy: $createdBy) {
+      _id
+      createdBy {
+        _id
+        name
+      }
+      description
+      ingredients {
+        ingredient
+        amount
+      }
+      filter
+      title
+    }
+  }
+`
 export const UPDATE_USER_BIO = gql`
   mutation updateUserBio($bio: String!) {
     updateUserBio(bio: $bio) {
