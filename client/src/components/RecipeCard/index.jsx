@@ -29,7 +29,7 @@ const RecipeCard = ({
       variables: { recipeId }, refetchQueries: [GET_RECIPES_BY_USERID, "getRecipesByUserId"]
     })
   }
-
+// for merge
   const shouldShowDeleteButton = Auth.loggedIn() && Auth.getProfile().data._id === userId && location.pathname === "/me";
   return (
   <div style={{ padding: "10px" }}>
