@@ -50,6 +50,7 @@ const typeDefs = `
   type IngredientInRecipe {
     ingredientId: ID!
     quantity: String!
+    ingredient: Ingredient
   }
 
   type Recipe {
