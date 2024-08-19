@@ -5,7 +5,7 @@ import { GET_RECIPE, QUERY_ME } from "../utils/queries";
 import { UPDATE_RECIPE } from "../utils/mutations";
 import dislikeIcon from "../assets/app-icons/dislike.png";
 
-const DislikeButton = ({ recipeId, refetchRecipes }) => {
+const DislikeButton = ({ recipeId }) => {
   const { data: userData } = useQuery(QUERY_ME);
   const { data: recipeData } = useQuery(GET_RECIPE, {
     variables: { recipeId },
@@ -35,8 +35,6 @@ const DislikeButton = ({ recipeId, refetchRecipes }) => {
           dislikes: updatedDislikes.map((dislike) => dislike._id),
         },
       });
-
-      refetchRecipes();
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
