@@ -62,6 +62,8 @@ const RecipeCarousel = ({ userId }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
 
+  const recipes = data?.recipes || [];
+
   return (
     <Carousel {...carouselSettings}>
       {recipes.map((recipe) => (
@@ -69,8 +71,11 @@ const RecipeCarousel = ({ userId }) => {
           key={recipe._id}
           title={recipe.title}
           imageURL={recipe.imageURL}
-          cuisineType={recipe.cuisineType}
           createdBy={recipe.createdBy.name}
+          recipeId={recipe._id}
+          likes={recipe.likes}
+          dislikes={recipe.dislikes}
+          refetchRecipes={refetch}
         />
       ))}
     </Carousel>

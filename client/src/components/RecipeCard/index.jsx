@@ -1,11 +1,20 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Button } from "antd";
+import { Link } from "react-router-dom";
 import LikeButton from "../Likebutton";
 import DislikeButton from "../DislikeButton";
 
 const { Meta } = Card;
 
-const RecipeCard = ({ title, imageURL, createdBy }) => (
+const RecipeCard = ({
+  title,
+  imageURL,
+  createdBy,
+  recipeId,
+  likes,
+  dislikes,
+  refetchRecipes,
+}) => (
   <div style={{ padding: "10px" }}>
     <Card
       hoverable
@@ -24,8 +33,23 @@ const RecipeCard = ({ title, imageURL, createdBy }) => (
           marginTop: "10px",
         }}
       >
-        <LikeButton />
-        <DislikeButton />
+        <LikeButton
+          recipeId={recipeId}
+          likes={likes}
+          dislikes={dislikes}
+          refetchRecipes={refetchRecipes}
+        />
+        <DislikeButton
+          recipeId={recipeId}
+          likes={likes}
+          dislikes={dislikes}
+          refetchRecipes={refetchRecipes}
+        />
+      </div>
+      <div style={{ marginTop: "10px", textAlign: "center" }}>
+        <Link to={`/Recipe/${recipeId}`}>
+          <Button type="primary">View Recipe</Button>
+        </Link>
       </div>
     </Card>
   </div>

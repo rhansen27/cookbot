@@ -33,3 +33,20 @@ export const UPDATE_USER_BIO = gql`
     }
   }
 `;
+
+export const UPDATE_RECIPE = gql`
+  mutation updateRecipe($recipeId: ID!, $likes: [ID]!, $dislikes: [ID]!) {
+    updateRecipe(recipeId: $recipeId, likes: $likes, dislikes: $dislikes) {
+      _id
+      title
+      likes {
+        _id
+        name
+      }
+      dislikes {
+        _id
+        name
+      }
+    }
+  }
+`;

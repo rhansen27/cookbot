@@ -57,7 +57,7 @@ const resolvers = {
       // },
     },
 
-    // Ingredient Queries (Commented Out in Original)
+    // Ingredient Queries
     ingredients: async () => {
       return Ingredient.find();
     },
@@ -108,11 +108,29 @@ const resolvers = {
 
     // Recipe Queries
     recipes: async () => {
-      return Recipe.find().populate("createdBy", "name");
+      return Recipe.find()
+        .populate("createdBy", "name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
 
     recipe: async (parent, { recipeId }) => {
-      return Recipe.findOne({ _id: recipeId }).populate("createdBy", "name");
+      return Recipe.findOne({ _id: recipeId })
+        .populate("createdBy", "name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
+        .populate("likes", "name")
+        .populate("dislikes", "name");
     },
   },
 
@@ -201,6 +219,26 @@ const resolvers = {
 
     removeRecipe: async (parent, { recipeId }) => {
       return Recipe.findOneAndDelete({ _id: recipeId });
+    },
+
+    updateRecipe: async (parent, { recipeId, likes, dislikes }) => {
+      const updatedRecipe = await Recipe.findByIdAndUpdate(
+        recipeId,
+        {
+          likes: likes,
+          dislikes: dislikes,
+        },
+        { new: true }
+      )
+        .populate("createdBy", "name")
+        .populate("likes", "name")
+        .populate("dislikes", "name");
+
+      if (!updatedRecipe) {
+        throw new Error("Recipe not found");
+      }
+
+      return updatedRecipe;
     },
   },
 };
