@@ -86,6 +86,13 @@ export const GET_RECIPES = gql`
         _id
         name
       }
+      instructions
+      ingredients {
+        quantity
+        ingredient {
+          name
+        }
+      }
     }
   }
 `;

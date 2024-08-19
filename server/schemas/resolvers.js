@@ -104,7 +104,12 @@ const resolvers = {
     recipes: async () => {
       return Recipe.find()
         .populate("createdBy", "name")
-        .populate("name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
         .populate("likes", "name")
         .populate("dislikes", "name");
     },
