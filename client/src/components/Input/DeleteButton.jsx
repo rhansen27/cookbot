@@ -22,7 +22,7 @@ export default function DeleteButton(props){
   };
   return (
     <>
-      <Button danger type="primary" onClick={showModal}>
+      <Button danger type="primary" onClick={showModal} style={{margin: '1rem', display: 'flex', justifyContent: 'center'}}>
         Delete Account 
       </Button>
       <Modal title="Delete Account" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>

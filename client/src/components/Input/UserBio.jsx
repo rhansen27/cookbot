@@ -20,14 +20,15 @@ export default function UserBio(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>User Information</label>
+      <label style={{fontSize: '1.5rem'}}>User Information</label>
       <TextArea
+        style={{backgroundColor: '#F1DEC6'}}
         name="userInfo"
         defaultValue={bio}
         onChange={(e) => setBio(e.target.value)}
         rows={4}
       />
-      <button type="submit">Save</button>
+      <button className="submit-button" type="submit">Save</button>
     </form>
   );
 }
