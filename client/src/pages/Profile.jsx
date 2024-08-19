@@ -39,7 +39,7 @@ const Profile = () => {
       </h4>
     );
   }
-
+  // TODO: add styles
   return (
     <div className="container">
       <h1 className="card-header">{user.name}</h1>
