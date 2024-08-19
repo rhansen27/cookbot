@@ -58,3 +58,11 @@ export const REMOVE_USER = gql`
     }
   }
 `;
+
+export const REMOVE_RECIPE = gql`
+  mutation removeRecipe($recipeId: ID!) {
+    removeRecipe(recipeId: $recipeId) {
+      _id
+    }
+  }
+`;
