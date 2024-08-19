@@ -1,14 +1,20 @@
 import { useQuery } from "@apollo/client";
 import { Carousel } from "antd";
 import RecipeCard from "../RecipeCard";
-import { GET_RECIPES } from "../../utils/queries";
+import { GET_RECIPES_BY_USERID, GET_RECIPES } from "../../utils/queries";
 
-export const getRecipes = () => {
-  const { loading, error, data } = useQuery(GET_RECIPES);
+export const getRecipes = (userId) => {
+  const { loading, error, data } = useQuery(
+    userId ? GET_RECIPES_BY_USERID : GET_RECIPES,
+    {
+      variables: { userId },
+    }
+  );
+  console.log(data);
   return {
     loading,
     error,
-    recipes: data ? data.recipes : [],
+    recipes: data?.recipes || data?.getRecipesByUserId || [],
   };
 };
 
@@ -50,8 +56,8 @@ const carouselSettings = {
   ],
 };
 
-const RecipeCarousel = () => {
-  const { loading, error, recipes } = getRecipes();
+const RecipeCarousel = ({ userId }) => {
+  const { loading, error, recipes } = getRecipes(userId);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;

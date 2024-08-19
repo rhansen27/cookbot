@@ -4,7 +4,7 @@ const typeDefs = `
     name: String
     email: String
     password: String
-    skills: [String]!
+    bio: String
   }
 
   type Auth {
@@ -83,11 +83,14 @@ const typeDefs = `
     ingredient(ingredientId: ID!): Ingredient
 
     recipes: [Recipe]!
-    recipe(recipeId: ID!): Recipe
+    recipe(recipeId: ID!): Recipe 
+    getRecipesByUserId(userId: ID!): [Recipe]
   }
   
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
+
+    updateUserBio(bio: String!): User
     
     login(email: String!, password: String!): Auth
 

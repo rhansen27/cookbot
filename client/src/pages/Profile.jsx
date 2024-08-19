@@ -2,15 +2,16 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { QUERY_SINGLE_USER, QUERY_ME } from "../utils/queries";
+import RecipeCarousel from "../components/RecipeCarousel/index";
 
-import TextBox from "../components/Input/TextBox";
+import UserBio from "../components/Input/UserBio";
 import SubmitButton from "../components/Input/SubmitButton";
 
 import Auth from "../utils/auth";
 
 const Profile = () => {
   const { userId } = useParams();
-
+  console.log(userId);
   // If there is no `userId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
   const { loading, data } = useQuery(userId ? QUERY_SINGLE_USER : QUERY_ME, {
     variables: { userId },
@@ -18,6 +19,8 @@ const Profile = () => {
 
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const user = data?.me || data?.user || {};
+
+  console.log(user);
 
   // Use React Router's `<Redirect />` component to redirect to personal user page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data._id === userId) {
@@ -43,9 +46,10 @@ const Profile = () => {
 
       <div className="card-body">
         <h5 className="card-title">About Me:</h5>
-        <TextBox defaultValue={user.bio} />
+        <UserBio bio={user.bio} />
         {/* <SubmitButton /> */}
       </div>
+      <RecipeCarousel userId={user._id} />
     </div>
   );
 };
