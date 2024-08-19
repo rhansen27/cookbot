@@ -73,7 +73,6 @@ const RecipeCarousel = ({ userId }) => {
           recipeId={recipe._id}
           likes={recipe.likes}
           dislikes={recipe.dislikes}
-          refetchRecipes={refetch}
         />
       ))}
     </Carousel>
