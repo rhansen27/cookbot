@@ -59,7 +59,7 @@ const RecipeCard = ({
           <Button type="primary">View Recipe</Button>
         </Link>
         {shouldShowDeleteButton && (
-          <Button danger style={{ marginTop: "10px" }} onClick={() => deleteRecipe(recipeId)}>
+          <Button danger style={{ marginTop: "10px", marginLeft: "10px" }} onClick={() => deleteRecipe(recipeId)}>
             Delete Recipe
           </Button>
         )}
