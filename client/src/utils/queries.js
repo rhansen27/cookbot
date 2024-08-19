@@ -86,6 +86,13 @@ export const GET_RECIPES = gql`
         _id
         name
       }
+      instructions
+      ingredients {
+        quantity
+        ingredient {
+          name
+        }
+      }
     }
   }
 `;
@@ -97,6 +104,7 @@ export const GET_RECIPE = gql`
       title
       imageURL
       cuisineType
+      dietType
       createdBy {
         name
       }
@@ -107,6 +115,13 @@ export const GET_RECIPE = gql`
       dislikes {
         _id
         name
+      }
+      instructions
+      ingredients {
+        quantity
+        ingredient {
+          name
+        }
       }
     }
   }

@@ -51,7 +51,7 @@ const resolvers = {
       // },
     },
 
-    // Ingredient Queries (Commented Out in Original)
+    // Ingredient Queries
     ingredients: async () => {
       return Ingredient.find();
     },
@@ -104,6 +104,12 @@ const resolvers = {
     recipes: async () => {
       return Recipe.find()
         .populate("createdBy", "name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
         .populate("likes", "name")
         .populate("dislikes", "name");
     },
@@ -111,6 +117,12 @@ const resolvers = {
     recipe: async (parent, { recipeId }) => {
       return Recipe.findOne({ _id: recipeId })
         .populate("createdBy", "name")
+        .populate({
+          path: "ingredients.ingredientId",
+          model: "Ingredient",
+          select: "name",
+          strictPopulate: false,
+        })
         .populate("likes", "name")
         .populate("dislikes", "name");
     },

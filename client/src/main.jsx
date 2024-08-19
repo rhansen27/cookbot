@@ -1,57 +1,69 @@
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom/dist'
-import './index.css'
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom/dist";
+import "./index.css";
 
-import App from './App.jsx'
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Error from './pages/Error';
-import AddRecipe from './pages/AddRecipe.jsx';
-import FindIngredient from './pages/FindIngredients.jsx';
-import NewRecipe from './pages/NewRecipe.jsx';
-import AboutUs from './pages/AboutUs.jsx';
+import App from "./App.jsx";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Error from "./pages/Error";
+import AddRecipe from "./pages/AddRecipe.jsx";
+import FindIngredient from "./pages/FindIngredients.jsx";
+import NewRecipe from "./pages/NewRecipe.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import RecipeDetailPage from "./pages/Recipe.jsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     error: <Error />,
     children: [
       {
         index: true,
-        element: <Home />
-      }, {
-        path: '/login',
-        element: <Login />
-      }, {
-        path: '/signup',
-        element: <Signup />
-      }, {
-        path: '/me',
-        element: <Profile />
-      }, {
-        path: '/profiles/:userId',
-        element: <Profile />
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/me",
+        element: <Profile />,
+      },
+      {
+        path: "/profiles/:userId",
+        element: <Profile />,
+      },
+      {
+        path: "/AddRecipe",
+        element: <AddRecipe />,
+      },
+      {
+        path: "/FindIngredients",
+        element: <FindIngredient />,
+      },
+      {
+        path: "/NewRecipe",
+        element: <NewRecipe />,
+      },
+      {
+        path: "AboutUs",
+        element: <AboutUs />,
+      },
+      {
+        path: "/Recipe/:id",
+        element: <RecipeDetailPage />,
+      },
+    ],
+  },
+]);
 
-      }, {
-        path: '/AddRecipe',
-        element: <AddRecipe />
-      }, {
-        path: '/FindIngredients',
-        element: <FindIngredient />
-      }, {
-        path: '/NewRecipe',
-        element: <NewRecipe />
-      }, {
-        path: 'AboutUs',
-        element: <AboutUs />
-      }
-    ]
-  }
-])
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
-)
+);
