@@ -50,3 +50,19 @@ export const UPDATE_RECIPE = gql`
     }
   }
 `;
+
+export const REMOVE_USER = gql`
+  mutation removeUser {
+    removeUser {
+      _id
+    }
+  }
+`;
+
+export const REMOVE_RECIPE = gql`
+  mutation removeRecipe($recipeId: ID!) {
+    removeRecipe(recipeId: $recipeId) {
+      _id
+    }
+  }
+`;

@@ -6,6 +6,7 @@ import RecipeCarousel from "../components/RecipeCarousel/index";
 
 import UserBio from "../components/Input/UserBio";
 import SubmitButton from "../components/Input/SubmitButton";
+import DeleteButton from "../components/Input/DeleteButton";
 
 import Auth from "../utils/auth";
 
@@ -43,6 +44,8 @@ const Profile = () => {
   return (
     <div className="container">
       <h1 className="card-header">{user.name}</h1>
+      <DeleteButton />
+
 
       <div className="card-body">
         <h5 className="card-title">About Me:</h5>

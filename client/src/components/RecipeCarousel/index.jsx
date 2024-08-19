@@ -65,10 +65,11 @@ const RecipeCarousel = ({ userId }) => {
     <Carousel {...carouselSettings}>
       {recipes.map((recipe) => (
         <RecipeCard
+          userId={userId}
           key={recipe._id}
           title={recipe.title}
           imageURL={recipe.imageURL}
-          createdBy={recipe.createdBy.name}
+          createdBy={recipe.createdBy}
           recipeId={recipe._id}
           likes={recipe.likes}
           dislikes={recipe.dislikes}
