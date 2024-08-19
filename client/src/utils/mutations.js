@@ -50,3 +50,11 @@ export const UPDATE_RECIPE = gql`
     }
   }
 `;
+
+export const REMOVE_USER = gql`
+  mutation removeUser {
+    removeUser {
+      _id
+    }
+  }
+`;

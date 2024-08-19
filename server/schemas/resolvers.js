@@ -143,6 +143,12 @@ const resolvers = {
       return { token, user };
     },
 
+    removeUser: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOneAndDelete({ _id: context.user._id });
+      }
+    },
+
     updateUserBio: async (parent, { bio }, context) => {
       if (context.user) {
         return User.findOneAndUpdate(

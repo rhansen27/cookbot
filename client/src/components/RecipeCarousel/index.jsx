@@ -62,7 +62,7 @@ const RecipeCarousel = ({ userId }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
 
-  const recipes = data?.recipes || [];
+
 
   return (
     <Carousel {...carouselSettings}>
@@ -75,7 +75,7 @@ const RecipeCarousel = ({ userId }) => {
           recipeId={recipe._id}
           likes={recipe.likes}
           dislikes={recipe.dislikes}
-          refetchRecipes={refetch}
+          // refetchRecipes={refetch}
         />
       ))}
     </Carousel>
