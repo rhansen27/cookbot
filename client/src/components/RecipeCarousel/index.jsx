@@ -10,7 +10,6 @@ export const getRecipes = (userId) => {
       variables: { userId },
     }
   );
-  console.log(data);
   return {
     loading,
     error,
@@ -57,12 +56,10 @@ const carouselSettings = {
 };
 
 const RecipeCarousel = ({ userId }) => {
-  const { loading, error, data } = getRecipes(userId);
+  const { loading, error, recipes } = getRecipes(userId);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipes</p>;
-
-  const recipes = data?.recipes || [];
 
   return (
     <Carousel {...carouselSettings}>
@@ -75,7 +72,6 @@ const RecipeCarousel = ({ userId }) => {
           recipeId={recipe._id}
           likes={recipe.likes}
           dislikes={recipe.dislikes}
-          refetchRecipes={refetch}
         />
       ))}
     </Carousel>

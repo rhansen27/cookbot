@@ -13,7 +13,6 @@ const RecipeCard = ({
   recipeId,
   likes,
   dislikes,
-  refetchRecipes,
 }) => (
   <div style={{ padding: "10px" }}>
     <Card
@@ -33,18 +32,8 @@ const RecipeCard = ({
           marginTop: "10px",
         }}
       >
-        <LikeButton
-          recipeId={recipeId}
-          likes={likes}
-          dislikes={dislikes}
-          refetchRecipes={refetchRecipes}
-        />
-        <DislikeButton
-          recipeId={recipeId}
-          likes={likes}
-          dislikes={dislikes}
-          refetchRecipes={refetchRecipes}
-        />
+        <LikeButton recipeId={recipeId} likes={likes} dislikes={dislikes} />
+        <DislikeButton recipeId={recipeId} likes={likes} dislikes={dislikes} />
       </div>
       <div style={{ marginTop: "10px", textAlign: "center" }}>
         <Link to={`/Recipe/${recipeId}`}>
